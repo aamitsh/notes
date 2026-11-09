@@ -32,6 +32,17 @@ img { max-width: 100%; }
 #subjects { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 16px; }
 .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 14px 18px; }
 .card h2 { margin-top: 0; }
+
+/* ===== Chapter test links — PDFs (sidebar + home) ===== */
+#sidebar li.chapter { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 6px; }
+#sidebar li.chapter > a:first-child, #sidebar li.chapter .ch-title { flex: 1 1 100%; }
+.tests { display: flex; flex-wrap: wrap; gap: 4px 6px; }
+.test-link { font-size: .78rem; text-decoration: none; color: #9a3412; background: #ffedd5;
+             border-radius: 10px; padding: 1px 8px; white-space: nowrap; }
+.test-link:hover { background: #fed7aa; }
+#subjects .test-link { font-size: .8rem; }
+.card ol li { margin: 6px 0; }
+.card .tests { margin-top: 3px; }
 #menubtn { display: none; }
 @media (max-width: 760px) {
   body { flex-direction: column; }
