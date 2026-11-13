@@ -1,0 +1,10 @@
+{
+  "name": "revision-notes",
+  "private": true,
+  "description": "Static revision-notes website. Drop notes (.html) and tests (.pdf) into chapter folders.",
+  "scripts": {
+    "build": "node tools/build.mjs",
+    "new": "node tools/new-chapter.mjs",
+    "preview": "node tools/build.mjs && python3 -m http.server 8000"
+  }
+}

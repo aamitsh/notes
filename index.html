@@ -3,19 +3,52 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>My Revision Notes</title>
+  <title>Class 9 Revision Notes</title>
+  <meta name="description" content="Chapter-wise revision notes and practice test papers.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📚</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,500;7..72,650&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/style.css">
-  <script>MathJax = { tex: { inlineMath: [["\\(", "\\)"], ["$", "$"]] } };</script>
-  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script>try{var t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
 </head>
-<body data-root="">
-  <button id="menubtn">☰ Menu</button>
-  <nav id="sidebar"></nav>
-  <main>
-    <h1>📚 My Revision Notes</h1>
-    <p>Pick a subject and chapter below, or use the menu on the left.</p>
-    <div id="subjects"></div>
+<body>
+  <header class="site-header">
+    <div class="container header-row">
+      <a class="brand" href="./"><span class="brand-mark">📚</span> <span id="site-title">Revision Notes</span></a>
+      <button id="theme-toggle" class="icon-btn" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">◐</button>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <h1 id="hero-title">Revision Notes</h1>
+      <p id="tagline" class="lead"></p>
+      <ul id="stats" class="stats" aria-label="Library size"></ul>
+      <div class="search-wrap">
+        <input id="search" type="search" placeholder="Search chapters &amp; tests…  (press /)" aria-label="Search chapters" autocomplete="off">
+      </div>
+      <div class="filters">
+        <nav id="tabs" class="tabs" aria-label="Filter by subject"></nav>
+        <label class="toggle"><input id="hide-soon" type="checkbox"> Hide “coming soon”</label>
+      </div>
+    </div>
+  </section>
+
+  <main class="container">
+    <section id="recent" class="recent" hidden>
+      <h2 class="section-label">Recently added</h2>
+      <div id="recent-list" class="recent-list"></div>
+    </section>
+    <div id="library"></div>
+    <p id="empty" class="empty" hidden>No chapters match your search.</p>
   </main>
-  <script src="assets/nav.js"></script>
+
+  <footer class="site-footer">
+    <div class="container">Last updated <span id="last-updated">—</span></div>
+  </footer>
+
+  <script src="assets/catalog.js"></script>
+  <script src="assets/app.js"></script>
 </body>
 </html>

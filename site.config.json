@@ -1,0 +1,22 @@
+{
+  "title": "Class 9 Revision Notes",
+  "tagline": "CBSE Class 9 Physics, Chemistry and Maths: chapter notes and practice test papers, following the new NCERT books (2026-27).",
+  "newForDays": 14,
+  "subjects": {
+    "physics": {
+      "name": "Physics",
+      "icon": "⚛️",
+      "order": 1
+    },
+    "chemistry": {
+      "name": "Chemistry",
+      "icon": "🧪",
+      "order": 2
+    },
+    "maths": {
+      "name": "Maths",
+      "icon": "📐",
+      "order": 3
+    }
+  }
+}

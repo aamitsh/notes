@@ -3,17 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Kinematics – Physics</title>
-  <link rel="stylesheet" href="../assets/style.css">
+  <!-- The <title> below becomes the chapter name on the home page. -->
+  <title>{{TITLE}}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,500;7..72,650&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/notes.css">
+  <script>try{var t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
   <script>MathJax = { tex: { inlineMath: [["\\(", "\\)"], ["$", "$"]] } };</script>
   <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
-<body data-root="../">
-  <button id="menubtn">☰ Menu</button>
-  <nav id="sidebar"></nav>
-  <main>
-    <span class="subject-tag">Physics</span>
-    <h1>Kinematics</h1>
+<body>
+  <header class="notes-top"><div class="container"><a href="../../index.html">← All chapters</a></div></header>
+  <main class="notes">
+    <span class="subject-tag">{{SUBJECT}}</span>
+    <h1>{{TITLE}}</h1>
 
     <!-- ===== Replace the sample content below with your notes ===== -->
 
@@ -41,9 +44,6 @@
     <h2>Quick revision (click to reveal)</h2>
     <details><summary>Q1. Sample question?</summary>Answer goes here.</details>
     <details><summary>Q2. Another question?</summary>Answer goes here.</details>
-
-    <div id="prevnext"></div>
   </main>
-  <script src="../assets/nav.js"></script>
 </body>
 </html>

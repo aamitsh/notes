@@ -1,0 +1,38 @@
+# Rebuilds assets/catalog.js whenever notes or tests are pushed/uploaded,
+# so new files appear on the website without running anything locally.
+name: Update site menu
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: build-catalog
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0          # full history so "Updated" dates are correct
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: node tools/build.mjs
+      - name: Commit catalog if it changed
+        run: |
+          if git diff --quiet -- assets/catalog.js; then
+            echo "Catalog already up to date."
+          else
+            git config user.name  "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add assets/catalog.js
+            git commit -m "Update site menu (auto)"
+            git push
+          fi
