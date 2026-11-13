@@ -21,7 +21,8 @@ const NOTES = [
   { subject: "Physics", folder: "physics", chapters: [
     { title: "Ch 1 – Work, Energy & Simple Machines",
       notes: "Work_Energy_Simple_Machines_Notes.html",
-      tests: [["tests/Work_Energy_Test_Set1.pdf", "Set 1"], ["tests/Work_Energy_Test_Set2.pdf", "Set 2"]] },
+      tests: [["tests/Work_Energy_Test_Set1.pdf", "Set 1"], ["tests/Work_Energy_Test_Set2.pdf", "Set 2"],
+              ["tests/CBSE_Work_Energy_Test_Set1.pdf", "CBSE Set 1"], ["tests/CBSE_Work_Energy_Test_Set2.pdf", "CBSE Set 2"]] },
     { title: "Ch 2 – Kinematics",     notes: "ch01-kinematics.html",     tests: [] },
     { title: "Ch 3 – Laws of Motion", notes: "ch02-laws-of-motion.html", tests: [] }
   ]},
