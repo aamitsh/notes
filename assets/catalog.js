@@ -192,6 +192,27 @@ window.CATALOG = {
           "notes": [],
           "tests": [],
           "updated": null
+        },
+        {
+          "num": 15,
+          "title": "Circles",
+          "notes": [
+            {
+              "href": "maths/15-circles/Circles_Revision_Notes.html",
+              "label": "Notes"
+            }
+          ],
+          "tests": [
+            {
+              "href": "maths/15-circles/Circles_CBSE_Test_30Q.pdf",
+              "label": "CBSE 30Q"
+            },
+            {
+              "href": "maths/15-circles/Circles_JEE_Test_30Q.pdf",
+              "label": "JEE 30Q"
+            }
+          ],
+          "updated": "2026-11-13"
         }
       ]
     }

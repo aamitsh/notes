@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Circles — Class 9 Revision Notes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#1d1f24; --muted:#5b616e; --line:#e3e5ea; --bg:#fbfaf7; --card:#ffffff;
+  --accent:#2f5d8a; --accent-soft:#eaf1f8;
+  --thm:#5b4bb7; --thm-soft:#f1effc;
+  --ex:#1f7a5c; --ex-soft:#e8f5ef;
+  --trap:#b4462a; --trap-soft:#fcefe9;
+  --tip:#8a6a10; --tip-soft:#fbf4df;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 "Inter",system-ui,sans-serif}
+.wrap{max-width:860px;margin:0 auto;padding:28px 20px 80px}
+header .kicker{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);font-weight:600}
+h1{font-family:"Source Serif 4",Georgia,serif;font-weight:600;font-size:38px;line-height:1.15;margin:6px 0 6px}
+header p.lead{color:var(--muted);margin:0 0 18px}
+.progress{position:sticky;top:0;z-index:5;background:var(--bg);padding:10px 0 12px;border-bottom:1px solid var(--line);margin-bottom:22px}
+.progress .bar{height:8px;background:#e9ebef;border-radius:6px;overflow:hidden}
+.progress .fill{height:100%;width:0;background:var(--accent);transition:width .3s}
+.progress .lbl{font-size:13px;color:var(--muted);margin-top:6px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.progress nav a{color:var(--accent);text-decoration:none;margin-left:8px;font-size:13px}
+.howto{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 20px;margin-bottom:28px}
+.howto h3{margin:0 0 6px;font-size:16px}
+.howto ul{margin:0;padding-left:20px}
+section.unit{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px 24px 18px;margin:0 0 26px}
+section.unit.done{border-color:#9cc7b5}
+.unit h2{font-family:"Source Serif 4",Georgia,serif;font-weight:600;font-size:25px;margin:0 0 10px;display:flex;gap:12px;align-items:baseline}
+.unit h2 .num{font-family:"Inter",sans-serif;font-size:14px;font-weight:600;color:var(--accent);background:var(--accent-soft);border-radius:6px;padding:2px 8px}
+.unit h3{font-size:17px;margin:20px 0 6px}
+.box{border-radius:10px;padding:12px 16px;margin:14px 0;border:1px solid}
+.box .tag{font-size:12px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;display:block;margin-bottom:2px}
+.thm{background:var(--thm-soft);border-color:#d6d0f5}.thm .tag{color:var(--thm)}
+.ex{background:var(--ex-soft);border-color:#c4e4d5}.ex .tag{color:var(--ex)}
+.trap{background:var(--trap-soft);border-color:#f2cdbf}.trap .tag{color:var(--trap)}
+.tip{background:var(--tip-soft);border-color:#eedfae}.tip .tag{color:var(--tip)}
+.formula{font-family:"Source Serif 4",Georgia,serif;font-size:19px;text-align:center;background:var(--accent-soft);border-radius:10px;padding:10px;margin:12px 0}
+table{border-collapse:collapse;width:100%;margin:12px 0;font-size:15px}
+th,td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+th{background:#f3f4f7;font-weight:600}
+figure{margin:14px 0;text-align:center}
+figure svg{max-width:100%;height:auto}
+figcaption{font-size:13px;color:var(--muted)}
+svg text{font-family:"Inter",sans-serif;font-size:13px;fill:#1d1f24}
+.check{border-top:1px dashed var(--line);margin-top:18px;padding-top:12px}
+.check h3{margin-top:0}
+.q{margin:10px 0}
+.q p{margin:0 0 4px}
+.star{color:#c08a00;font-weight:600}
+details{margin:4px 0 0}
+summary{cursor:pointer;color:var(--accent);font-size:14px;font-weight:500;list-style:none;display:inline-block;padding:3px 10px;border:1px solid #c9d8e8;border-radius:6px}
+summary::-webkit-details-marker{display:none}
+details[open] summary{background:var(--accent-soft)}
+details .ans{background:#f6f8fa;border-left:3px solid var(--accent);padding:8px 12px;margin-top:6px;font-size:15px}
+.done-row{display:flex;align-items:center;gap:12px;margin-top:16px;flex-wrap:wrap}
+.done-row button{font:inherit;font-size:14px;font-weight:500;border:1px solid var(--accent);background:#fff;color:var(--accent);border-radius:8px;padding:6px 14px;cursor:pointer}
+.done-row button.on{background:var(--ex);border-color:var(--ex);color:#fff}
+.done-row span{font-size:13px;color:var(--muted)}
+ul.traps li{margin-bottom:6px}
+footer{color:var(--muted);font-size:13px;text-align:center;margin-top:30px}
+@media (max-width:600px){h1{font-size:30px}section.unit{padding:18px 16px}.unit h2{font-size:21px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div class="kicker">Class 9 Mathematics · Chapter 9</div>
+  <h1>Circles</h1>
+  <p class="lead">Revision notes covering every concept, theorem and exercise type in the NCERT chapter (2025–26 reprint).</p>
+</header>
+
+<div class="progress">
+  <div class="bar"><div class="fill" id="fill"></div></div>
+  <div class="lbl"><span id="plabel">0 of 9 sections complete</span><span><a href="#traps">Common traps</a><a href="#summary">One-page summary</a></span></div>
+</div>
+
+<div class="howto">
+  <h3>How to use these notes</h3>
+  <ul>
+    <li>Read each section, then try its checkpoint questions <b>before</b> opening the answers.</li>
+    <li>Draw every figure yourself. In circle questions, the figure is half the solution.</li>
+    <li>Questions marked <span class="star">★</span> are at test-paper level.</li>
+    <li>When you get all of a section's questions right, press <b>Mark section complete</b>.</li>
+    <li>Finish with <a href="#traps">Common traps</a> and the <a href="#summary">one-page summary</a> the night before the test.</li>
+  </ul>
+</div>
+
+<!-- 01 -->
+<section class="unit" id="s1" data-sec>
+<h2><span class="num">01</span>Parts of a circle</h2>
+<p>A <b>circle</b> is the collection of all points in a plane that are at a fixed distance (the <b>radius</b>) from a fixed point (the <b>centre</b>).</p>
+<figure>
+<svg viewBox="0 0 440 220" role="img" aria-label="Circle showing centre, diameter, chord, minor arc and minor segment">
+<path d="M87.6 60 A80 80 0 0 1 212.4 60 Z" fill="#eaf1f8"/>
+<circle cx="150" cy="110" r="80" fill="none" stroke="#1d1f24" stroke-width="1.4"/>
+<path d="M87.6 60 A80 80 0 0 1 212.4 60" fill="none" stroke="#2f5d8a" stroke-width="3.5"/>
+<line x1="87.6" y1="60" x2="212.4" y2="60" stroke="#b4462a" stroke-width="2"/>
+<line x1="70" y1="110" x2="230" y2="110" stroke="#5b4bb7" stroke-width="2"/>
+<circle cx="150" cy="110" r="3" fill="#1d1f24"/>
+<text x="144" y="128">O</text><text x="74" y="56">C</text><text x="216" y="56">D</text><text x="54" y="114">P</text><text x="236" y="114">Q</text>
+<line x1="180" y1="36" x2="270" y2="36" stroke="#9aa0ab" stroke-dasharray="3 3"/><text x="276" y="40">Minor arc CD</text>
+<line x1="170" y1="50" x2="270" y2="66" stroke="#9aa0ab" stroke-dasharray="3 3"/><text x="276" y="70">Minor segment (shaded)</text>
+<line x1="212" y1="62" x2="270" y2="96" stroke="#9aa0ab" stroke-dasharray="3 3"/><text x="276" y="100">Chord CD</text>
+<line x1="230" y1="112" x2="270" y2="126" stroke="#9aa0ab" stroke-dasharray="3 3"/><text x="276" y="130">Diameter PQ</text>
+<line x1="152" y1="112" x2="270" y2="160" stroke="#9aa0ab" stroke-dasharray="3 3"/><text x="276" y="164">Centre O</text>
+</svg>
+<figcaption>Fig 1. The main parts of a circle</figcaption>
+</figure>
+<table>
+<tr><th>Term</th><th>Meaning</th></tr>
+<tr><td>Chord</td><td>A line segment joining any two points on the circle.</td></tr>
+<tr><td>Diameter</td><td>A chord through the centre. It is the <b>longest chord</b>, and diameter = 2 × radius.</td></tr>
+<tr><td>Arc</td><td>A piece of the circle between two points. The smaller piece is the <b>minor arc</b> and the larger is the <b>major arc</b>. Two ends of a diameter cut the circle into two <b>semicircles</b>.</td></tr>
+<tr><td>Segment</td><td>The region between a chord and an arc: the <b>minor segment</b> (with the minor arc) and the <b>major segment</b> (with the major arc).</td></tr>
+<tr><td>Sector</td><td>The region between two radii and an arc.</td></tr>
+<tr><td>Congruent circles</td><td>Circles with equal radii. They fit exactly on top of each other.</td></tr>
+<tr><td>Angle subtended by chord PQ at point R</td><td>∠PRQ: the angle formed at R by joining R to both ends of the chord.</td></tr>
+</table>
+<div class="tip"><span class="tag">Remember</span>A point is inside, on or outside a circle according to whether its distance from the centre is less than, equal to or greater than the radius.</div>
+<div class="check">
+<h3>Checkpoint</h3>
+<div class="q"><p>1. How many diameters can a circle have?</p><details><summary>Show answer</summary><div class="ans">Infinitely many. Every one of them passes through the centre.</div></details></div>
+<div class="q"><p>2. A chord of a circle of radius 7 cm has length 14 cm. What kind of chord is it?</p><details><summary>Show answer</summary><div class="ans">A diameter, since 14 = 2 × 7. Its two arcs are semicircles.</div></details></div>
+<div class="q"><p>3. The minor segment is bounded by which two things?</p><details><summary>Show answer</summary><div class="ans">The chord and the minor arc.</div></details></div>
+</div>
+<div class="done-row"><button data-done>Mark section complete</button><span>Got all 3 right?</span></div>
+</section>
+
+<!-- 02 -->
+<section class="unit" id="s2" data-sec>
+<h2><span class="num">02</span>Equal chords and the angles they subtend at the centre</h2>
+<div class="box thm"><span class="tag">Theorem 9.1</span>Equal chords of a circle subtend equal angles at the centre.</div>
+<p><b>Proof idea:</b> for equal chords AB and CD, compare △AOB and △COD: OA = OC and OB = OD (radii), and AB = CD (given). So △AOB ≅ △COD by <b>SSS</b>, and ∠AOB = ∠COD by CPCT.</p>
+<div class="box thm"><span class="tag">Theorem 9.2 (converse)</span>If the angles subtended by two chords at the centre are equal, the chords are equal.</div>
+<p><b>Proof idea:</b> OA = OC, ∠AOB = ∠COD and OB = OD, so the triangles are congruent by <b>SAS</b>, and AB = CD by CPCT.</p>
+<h3>Chords and arcs</h3>
+<ul>
+<li>If two chords are equal, their corresponding arcs are <b>congruent</b>. The converse is also true: congruent arcs have equal chords.</li>
+<li>Congruent arcs subtend equal angles at the centre.</li>
+<li>The angle subtended by an <b>arc</b> at the centre means the angle subtended by its chord: the minor arc subtends ∠POQ and the major arc subtends <b>reflex</b> ∠POQ.</li>
+</ul>
+<div class="tip"><span class="tag">Also true for congruent circles</span>Every result in this section works for two different circles too, as long as they have equal radii (NCERT Exercise 9.1).</div>
+<div class="check">
+<h3>Checkpoint</h3>
+<div class="q"><p>1. Chords AB and CD of a circle are equal and ∠AOB = 84°. Find ∠COD and ∠OAB.</p><details><summary>Show answer</summary><div class="ans">∠COD = 84° (Theorem 9.1). △OAB is isosceles (OA = OB), so ∠OAB = (180° − 84°)/2 = 48°.</div></details></div>
+<div class="q"><p>2. Which congruence rule proves Theorem 9.1, and which proves Theorem 9.2?</p><details><summary>Show answer</summary><div class="ans">9.1 uses SSS (all three sides known equal). 9.2 uses SAS (two radii and the included angle).</div></details></div>
+<div class="q"><p><span class="star">★</span> 3. A regular hexagon is drawn inside a circle with all six vertices on the circle. What angle does each side subtend at the centre, and how long is each side compared with the radius?</p><details><summary>Show answer</summary><div class="ans">The six sides are equal chords, so they subtend equal angles: 360° ÷ 6 = 60°. Each triangle formed with the centre has two radii and a 60° angle between them, so it is equilateral. Each side therefore equals the radius.</div></details></div>
+</div>
+<div class="done-row"><button data-done>Mark section complete</button><span>Got all 3 right?</span></div>
+</section>
+
+<!-- 03 -->
+<section class="unit" id="s3" data-sec>
+<h2><span class="num">03</span>Perpendicular from the centre to a chord</h2>
+<div class="box thm"><span class="tag">Theorem 9.3</span>The perpendicular from the centre of a circle to a chord bisects the chord.</div>
+<div class="box thm"><span class="tag">Theorem 9.4 (converse)</span>The line drawn through the centre of a circle to bisect a chord is perpendicular to the chord.</div>
+<p><b>Proof idea (9.4):</b> join OA and OB. In △OAM and △OBM: OA = OB, AM = BM and OM is common, so they are congruent by SSS. That gives ∠OMA = ∠OMB, and since together they make 180°, each is 90°.</p>
+<figure>
+<svg viewBox="0 0 440 230" role="img" aria-label="Perpendicular OM from the centre to chord AB, forming a right triangle with radius r">
+<circle cx="150" cy="110" r="80" fill="none" stroke="#1d1f24" stroke-width="1.4"/>
+<line x1="80.7" y1="150" x2="219.3" y2="150" stroke="#b4462a" stroke-width="2"/>
+<line x1="150" y1="110" x2="150" y2="150" stroke="#2f5d8a" stroke-width="2"/>
+<line x1="150" y1="110" x2="219.3" y2="150" stroke="#5b4bb7" stroke-width="2"/>
+<path d="M150 140 L160 140 L160 150" fill="none" stroke="#1d1f24"/>
+<circle cx="150" cy="110" r="3" fill="#1d1f24"/>
+<text x="138" y="104">O</text><text x="64" y="156">A</text><text x="224" y="156">B</text><text x="146" y="168">M</text>
+<text x="136" y="134">d</text><text x="188" y="122">r</text><text x="174" y="166">l/2</text>
+<text x="270" y="90">OM ⊥ AB  ⇔  AM = MB</text>
+<text x="270" y="116">Right △OMB gives</text>
+<text x="270" y="140">r² = d² + (l/2)²</text>
+</svg>
+<figcaption>Fig 2. The key right triangle: radius r, distance d, half-chord l/2</figcaption>
+</figure>
+<div class="formula">r² = d² + (l/2)²  &nbsp;⇒&nbsp;  l = 2√(r² − d²), &nbsp; d = √(r² − (l/2)²)</div>
+<p>This single right triangle solves almost every numerical chord question: chord lengths, distances, parallel chords and common chords.</p>
+<div class="box ex"><span class="tag">Worked example 1: chord length</span>A chord is 5 cm from the centre of a circle of radius 13 cm. Half-chord = √(13² − 5²) = √144 = 12, so the chord = <b>24 cm</b>.</div>
+<div class="box ex"><span class="tag">Worked example 2: parallel chords (two cases)</span>Chords of 6 cm and 8 cm in a circle of radius 5 cm. Distances from O: √(25 − 9) = 4 and √(25 − 16) = 3.<br>Same side of O: 4 − 3 = <b>1 cm</b> apart. Opposite sides: 4 + 3 = <b>7 cm</b> apart.</div>
+<div class="box ex"><span class="tag">Worked example 3: common chord (NCERT 9.2 Q1)</span>Circles of radii 5 cm and 3 cm, centres 4 cm apart. The line of centres is the <b>perpendicular bisector of the common chord</b>. Let the chord meet O₁O₂ at M with O₁M = x and half-chord h:<br>25 − x² = 9 − (4 − x)² ⇒ 25 = 9 − 16 + 8x ⇒ x = 4, so M = O₂ and h = √(25 − 16) = 3. Common chord = <b>6 cm</b>.</div>
+<div class="box ex"><span class="tag">Worked example 4: concentric circles (NCERT 9.2 Q4)</span>A line cuts two concentric circles at A, B, C, D in order. Drop OM ⊥ to the line: M bisects both AD and BC, so AM = MD and BM = MC. Subtracting gives <b>AB = CD</b>.</div>
+<div class="trap"><span class="tag">Common trap</span>Theorem 9.4 needs the chord to <b>not</b> be a diameter. A diameter is bisected by <i>every</i> line through O, and most of those lines are not perpendicular to it.</div>
+<div class="check">
+<h3>Checkpoint</h3>
+<div class="q"><p>1. Find the distance from the centre of a chord of length 16 cm in a circle of radius 10 cm.</p><details><summary>Show answer</summary><div class="ans">√(100 − 64) = √36 = 6 cm.</div></details></div>
+<div class="q"><p>2. In a circle of radius 17 cm, two parallel chords are 30 cm and 16 cm long. Find both possible distances between them.</p><details><summary>Show answer</summary><div class="ans">Distances from O: √(289 − 225) = 8 and √(289 − 64) = 15. Same side: 15 − 8 = 7 cm. Opposite sides: 15 + 8 = 23 cm.</div></details></div>
+<div class="q"><p><span class="star">★</span> 3. Three girls stand on a circle of radius 5 m. Reshma–Salma = Salma–Mandip = 6 m. Find Reshma–Mandip (NCERT 9.2 Q5).</p><details><summary>Show answer</summary><div class="ans">SR = SM, so S is equidistant from R and M, and OS is the perpendicular bisector of RM, meeting it at P. Distance of O from RS = √(25 − 9) = 4, so area of △ORS = ½ × 6 × 4 = 12. The same area is ½ × OS × RP = ½ × 5 × RP, so RP = 4.8 and RM = <b>9.6 m</b>.</div></details></div>
+<div class="q"><p><span class="star">★</span> 4. Three boys sit at equal distances on a circular park of radius 20 m, joined by toy-telephone strings. Find each string's length (NCERT 9.2 Q6).</p><details><summary>Show answer</summary><div class="ans">The three strings are equal chords, so they form an equilateral triangle and each subtends 120° at O. Dropping a perpendicular from O to one string gives a 30°–60°–90° triangle: distance = 20/2 = 10 m, half-string = √(400 − 100) = 10√3. Each string = <b>20√3 m</b>.</div></details></div>
+</div>
+<div class="done-row"><button data-done>Mark section complete</button><span>Got all 4 right?</span></div>
+</section>
+
+<!-- 04 -->
+<section class="unit" id="s4" data-sec>
+<h2><span class="num">04</span>Equal chords and their distances from the centre</h2>
+<p>The <b>distance of a line from a point</b> is the length of the perpendicular from the point to the line, which is the shortest segment joining them. If the point lies on the line, the distance is zero.</p>
+<div class="box thm"><span class="tag">Theorem 9.5</span>Equal chords of a circle (or of congruent circles) are equidistant from the centre (or centres).</div>
+<div class="box thm"><span class="tag">Theorem 9.6 (converse)</span>Chords equidistant from the centre of a circle are equal in length.</div>
+<p>From l = 2√(r² − d²): the <b>nearer</b> a chord is to the centre, the <b>longer</b> it is. The diameter is at distance 0 and is the longest chord.</p>
+<div class="box ex"><span class="tag">Worked example (NCERT Example 1)</span>Two chords AB and CD intersect at E, and make equal angles with the diameter PQ through E. Draw OL ⊥ AB and OM ⊥ CD. In △OLE and △OME: ∠OLE = ∠OME = 90°, ∠LEO = ∠MEO (given) and OE is common, so they are congruent by AAS. Then OL = OM, so AB = CD by Theorem 9.6.</div>
+<div class="box ex"><span class="tag">Worked example (NCERT 9.2 Q2 and Q3): equal chords that cross</span>Equal chords AB and CD meet at E inside the circle. Then OL = OM (Theorem 9.5), and right △OLE ≅ △OME (RHS, OE common). This gives:<br>• EL = EM and AL = CM, so AE = AL + LE = CM + ME = CE, and likewise BE = DE. <b>The segments are equal.</b><br>• ∠OEL = ∠OEM, so <b>OE makes equal angles with the two chords</b>.</div>
+<div class="check">
+<h3>Checkpoint</h3>
+<div class="q"><p>1. Two chords of a circle are at distances 3 cm and 5 cm from the centre. Which one is longer?</p><details><summary>Show answer</summary><div class="ans">The one at 3 cm, because it is nearer the centre.</div></details></div>
+<div class="q"><p>2. Is the converse "chords equidistant from the centre are equal" true for two circles of different radii?</p><details><summary>Show answer</summary><div class="ans">No. It holds only for the same circle or congruent circles. For example, chords 3 cm from the centres of circles of radius 5 cm and 10 cm have lengths 8 cm and 2√91 cm.</div></details></div>
+<div class="q"><p><span class="star">★</span> 3. Two equal chords of length 16 cm in a circle of radius 10 cm cross at right angles at E. Find OE.</p><details><summary>Show answer</summary><div class="ans">Each chord is 6 cm from O. With OL ⊥ AB and OM ⊥ CD and AB ⊥ CD, OLEM is a rectangle with OL = OM = 6, i.e. a square. OE is its diagonal = <b>6√2 cm</b>.</div></details></div>
+</div>
+<div class="done-row"><button data-done>Mark section complete</button><span>Got all 3 right?</span></div>
+</section>
+
+<!-- 05 -->
+<section class="unit" id="s5" data-sec>
+<h2><span class="num">05</span>Angle at the centre is double the angle on the circle</h2>
+<div class="box thm"><span class="tag">Theorem 9.7: the most-used result in the chapter</span>The angle subtended by an arc at the centre is double the angle subtended by it at any point on the <b>remaining part</b> of the circle.</div>
+<figure>
+<svg viewBox="0 0 440 230" role="img" aria-label="Arc PQ subtends angle 2x at centre O and angle x at point A on the circle">
+<circle cx="150" cy="115" r="85" fill="none" stroke="#1d1f24" stroke-width="1.4"/>
+<path d="M95.4 180.1 A85 85 0 0 0 204.6 180.1" fill="none" stroke="#2f5d8a" stroke-width="3.5"/>
+<line x1="150" y1="115" x2="95.4" y2="180.1" stroke="#5b4bb7" stroke-width="2"/>
+<line x1="150" y1="115" x2="204.6" y2="180.1" stroke="#5b4bb7" stroke-width="2"/>
+<line x1="150" y1="30" x2="95.4" y2="180.1" stroke="#b4462a" stroke-width="1.6"/>
+<line x1="150" y1="30" x2="204.6" y2="180.1" stroke="#b4462a" stroke-width="1.6"/>
+<line x1="150" y1="30" x2="150" y2="115" stroke="#9aa0ab" stroke-dasharray="3 3"/>
+<circle cx="150" cy="115" r="3" fill="#1d1f24"/>
+<text x="146" y="22">A</text><text x="80" y="194">P</text><text x="209" y="194">Q</text><text x="156" y="112">O</text>
+<text x="139" y="146" style="fill:#5b4bb7;font-weight:600">2x</text>
+<text x="144" y="62" style="fill:#b4462a;font-weight:600">x</text>
+<text x="270" y="80">∠POQ = 2 ∠PAQ</text>
+<text x="270" y="106">Proof: join AO and</text>
+<text x="270" y="126">extend it; use the</text>
+<text x="270" y="146">exterior angle of the</text>
+<text x="270" y="166">isosceles triangles.</text>
+</svg>
+<figcaption>Fig 3. Arc PQ (blue) seen from the centre and from point A</figcaption>
+</figure>
+<p><b>Proof outline:</b> join AO and extend it to B. In △OAQ, OA = OQ, so ∠OAQ = ∠OQA. The exterior angle ∠BOQ = ∠OAQ + ∠OQA = 2∠OAQ. Similarly ∠BOP = 2∠OAP. Adding gives ∠POQ = 2∠PAQ.</p>
+<p>The theorem has <b>three cases</b>: arc PQ is a minor arc, a semicircle, or a major arc. For a major arc, the centre angle is the <b>reflex</b> angle: reflex ∠POQ = 2∠PAQ.</p>
+<div class="box ex"><span class="tag">Worked example (NCERT 9.3 Q1)</span>∠BOC = 30° and ∠AOB = 60°, D on the circle off arc ABC. ∠AOC = 90°, so ∠ADC = ½ × 90° = <b>45°</b>.</div>
+<div class="box ex"><span class="tag">Worked example (NCERT 9.3 Q3)</span>P, Q, R on the circle, Q on minor arc PR, ∠PQR = 100°. Q sees the major arc PR, so reflex ∠POR = 200° and ∠POR = 160°. △OPR is isosceles, so ∠OPR = (180° − 160°)/2 = <b>10°</b>.</div>
+<div class="box ex"><span class="tag">Worked example: chord equal to the radius (NCERT 9.3 Q2)</span>△OAB is equilateral, so ∠AOB = 60°. On the major arc the angle is <b>30°</b>; on the minor arc it is 180° − 30° = <b>150°</b>.</div>
+<div class="trap"><span class="tag">Common trap</span>"Double" works only when the point on the circle is on the <b>other</b> side of the chord from the arc being measured. A point on the minor arc sees the major arc, so use the reflex angle there, or use the 180° rule from Section 08.</div>
+<div class="check">
+<h3>Checkpoint</h3>
+<div class="q"><p>1. ∠AOB = 130° and C is on the major arc. Find ∠ACB.</p><details><summary>Show answer</summary><div class="ans">65°.</div></details></div>
+<div class="q"><p>2. In the same circle, D is on the minor arc AB. Find ∠ADB.</p><details><summary>Show answer</summary><div class="ans">Reflex ∠AOB = 230°, so ∠ADB = 115° (also 180° − 65°).</div></details></div>
+<div class="q"><p><span class="star">★</span> 3. Triangle ABC is inscribed in a circle with centre O inside the triangle. ∠OBC = 20°. Find ∠BAC.</p><details><summary>Show answer</summary><div class="ans">△OBC is isosceles, so ∠BOC = 180° − 40° = 140°, and ∠BAC = 70°.</div></details></div>
+</div>
+<div class="done-row"><button data-done>Mark section complete</button><span>Got all 3 right?</span></div>
+</section>
+
+<!-- 06 -->
+<section class="unit" id="s6" data-sec>
+<h2><span class="num">06</span>Angles in the same segment and the angle in a semicircle</h2>
+<div class="box thm"><span class="tag">Theorem 9.8</span>Angles in the same segment of a circle are equal.</div>
+<p><b>Why:</b> each of them is half of the same centre angle (Theorem 9.7).</p>
+<div class="box thm"><span class="tag">Corollary</span>The angle in a semicircle is a right angle (90°).</div>
+<p><b>Why:</b> the centre angle of a semicircle is a straight angle, 180°, so the angle on the circle is 180° ÷ 2 = 90°.</p>
+<figure>
+<svg viewBox="0 0 440 220" role="img" aria-label="Left: angles PAQ and PCQ in the same segment are equal. Right: angle in a semicircle is 90 degrees.">
+<circle cx="110" cy="110" r="80" fill="none" stroke="#1d1f24" stroke-width="1.4"/>
+<line x1="58.6" y1="171.3" x2="161.4" y2="171.3" stroke="#2f5d8a" stroke-width="2"/>
+<line x1="76.2" y1="37.5" x2="58.6" y2="171.3" stroke="#b4462a" stroke-width="1.5"/>
+<line x1="76.2" y1="37.5" x2="161.4" y2="171.3" stroke="#b4462a" stroke-width="1.5"/>
+<line x1="150" y1="40.7" x2="58.6" y2="171.3" stroke="#5b4bb7" stroke-width="1.5"/>
+<line x1="150" y1="40.7" x2="161.4" y2="171.3" stroke="#5b4bb7" stroke-width="1.5"/>
+<text x="64" y="30">A</text><text x="152" y="32">C</text><text x="42" y="186">P</text><text x="164" y="186">Q</text>
+<text x="40" y="212">∠PAQ = ∠PCQ</text>
+<circle cx="330" cy="110" r="80" fill="none" stroke="#1d1f24" stroke-width="1.4"/>
+<line x1="250" y1="110" x2="410" y2="110" stroke="#2f5d8a" stroke-width="2"/>
+<line x1="370" y1="40.7" x2="250" y2="110" stroke="#b4462a" stroke-width="1.5"/>
+<line x1="370" y1="40.7" x2="410" y2="110" stroke="#b4462a" stroke-width="1.5"/>
+<circle cx="330" cy="110" r="3" fill="#1d1f24"/>
+<text x="374" y="34">R</text><text x="234" y="114">A</text><text x="414" y="114">B</text><text x="326" y="128">O</text>
+<text x="290" y="212">∠ARB = 90°</text>
+</svg>
+<figcaption>Fig 4. Same segment (left) and semicircle (right)</figcaption>
+</figure>
+<div class="box ex"><span class="tag">Worked example (NCERT Example 2)</span>AB is a diameter, CD is a chord equal to the radius, and AC and BD extended meet at E. △OCD is equilateral, so ∠COD = 60° and ∠CBD = 30°. ∠ACB = 90° (semicircle), so ∠BCE = 90°. In △BCE, ∠CEB = 90° − 30° = <b>60°</b>.</div>
+<div class="box ex"><span class="tag">Worked example (NCERT Example 4 and 9.3 Q10)</span>Two circles meet at A and B, and AD and AC are diameters. Then ∠ABD = ∠ABC = 90° (semicircles), which add up to 180°, so <b>D, B, C are collinear</b>. Likewise, circles drawn on two sides of a triangle as diameters meet on the third side.</div>
+<div class="tip"><span class="tag">Spotting tip</span>Whenever a figure has a <b>diameter</b>, look for a 90° angle at every point of the circle joined to both of its ends.</div>
+<div class="check">
+<h3>Checkpoint</h3>
+<div class="q"><p>1. In Fig 4 (left), ∠PAQ = 38°. Find ∠PCQ.</p><details><summary>Show answer</summary><div class="ans">38° (same segment).</div></details></div>
+<div class="q"><p>2. AB is a diameter and C is on the circle with ∠CAB = 35°. Find ∠CBA.</p><details><summary>Show answer</summary><div class="ans">∠ACB = 90°, so ∠CBA = 180° − 90° − 35° = 55°.</div></details></div>
+<div class="q"><p><span class="star">★</span> 3. AB is a diameter, C is on the circle, and the bisector of ∠ACB meets the circle again at D. Find ∠ABD.</p><details><summary>Show answer</summary><div class="ans">∠ACB = 90°, so ∠ACD = 45°. ∠ABD = ∠ACD (same segment AD) = <b>45°</b>, wherever C is.</div></details></div>
+</div>
+<div class="done-row"><button data-done>Mark section complete</button><span>Got all 3 right?</span></div>
+</section>
+
+<!-- 07 -->
+<section class="unit" id="s7" data-sec>
+<h2><span class="num">07</span>Concyclic points</h2>
+<p>Points that lie on the same circle are called <b>concyclic</b>.</p>
+<div class="box thm"><span class="tag">Theorem 9.9 (converse of 9.8)</span>If a line segment joining two points subtends equal angles at two other points lying on the <b>same side</b> of the line containing the segment, the four points are concyclic.</div>
+<p><b>Proof idea (by contradiction):</b> draw the circle through A, C, B. If it misses D, it cuts AD (or AD extended) at E. Then ∠AEB = ∠ACB = ∠ADB, but the exterior angle of △BED can't equal its interior opposite angle unless E = D.</p>
+<div class="box ex"><span class="tag">Worked example (NCERT 9.3 Q11)</span>ABC and ADC are right triangles with common hypotenuse AC. Since ∠ABC = ∠ADC = 90°, B and D lie on the circle with AC as diameter. So A, B, C, D are concyclic, and ∠CAD = ∠CBD (same segment CD).</div>
+<div class="box ex"><span class="tag">Worked example: feet of altitudes</span>In △ABC, BE and CF are altitudes. ∠BEC = ∠BFC = 90°, so B, C, E, F are concyclic (BC subtends equal angles at E and F, on the same side).</div>
+<div class="trap"><span class="tag">Common trap</span>The two points must be on the <b>same side</b> of the segment. If they are on opposite sides, use the cyclic-quadrilateral test instead (angles adding up to 180°).</div>
+<div class="check">
+<h3>Checkpoint</h3>
+<div class="q"><p>1. ∠ACB = ∠ADB = 50°, with C and D on the same side of AB. Are A, B, C, D concyclic?</p><details><summary>Show answer</summary><div class="ans">Yes, by Theorem 9.9.</div></details></div>
+<div class="q"><p><span class="star">★</span> 2. In the situation of Q1, ∠CAD = 25°. Find ∠CBD.</p><details><summary>Show answer</summary><div class="ans">The points are concyclic, so ∠CBD = ∠CAD = 25° (same segment CD).</div></details></div>
+</div>
+<div class="done-row"><button data-done>Mark section complete</button><span>Got both right?</span></div>
+</section>
+
+<!-- 08 -->
+<section class="unit" id="s8" data-sec>
+<h2><span class="num">08</span>Cyclic quadrilaterals</h2>
+<p>A quadrilateral is <b>cyclic</b> if all four of its vertices lie on a circle.</p>
+<div class="box thm"><span class="tag">Theorem 9.10</span>The sum of either pair of opposite angles of a cyclic quadrilateral is 180°: ∠A + ∠C = 180° and ∠B + ∠D = 180°.</div>
+<div class="box thm"><span class="tag">Theorem 9.11 (converse)</span>If the sum of a pair of opposite angles of a quadrilateral is 180°, the quadrilateral is cyclic.</div>
+<figure>
+<svg viewBox="0 0 440 240" role="img" aria-label="Cyclic quadrilateral ABCD with AB extended to E; exterior angle CBE equals interior opposite angle D">
+<circle cx="150" cy="115" r="85" fill="none" stroke="#1d1f24" stroke-width="1.4"/>
+<polygon points="70.1,144.1 179.1,194.9 233.7,100.2 107.5,41.4" fill="#f1effc" stroke="#5b4bb7" stroke-width="2"/>
+<line x1="179.1" y1="194.9" x2="222.7" y2="215.2" stroke="#b4462a" stroke-width="2" stroke-dasharray="5 3"/>
+<text x="54" y="150">A</text><text x="170" y="214">B</text><text x="238" y="100">C</text><text x="96" y="34">D</text><text x="226" y="230">E</text>
+<text x="270" y="70">∠A + ∠C = 180°</text>
+<text x="270" y="96">∠B + ∠D = 180°</text>
+<text x="270" y="130" style="fill:#b4462a">Exterior ∠CBE = ∠D</text>
+<text x="270" y="152">(interior opposite angle)</text>
+</svg>
+<figcaption>Fig 5. Opposite angles add up to 180°; the exterior angle equals the interior opposite angle</figcaption>
+</figure>
+<h3>Useful consequences</h3>
+<table>
+<tr><th>Result</th><th>Reason</th></tr>
+<tr><td>Exterior angle of a cyclic quadrilateral = interior opposite angle</td><td>∠CBE = 180° − ∠ABC = ∠ADC</td></tr>
+<tr><td>A cyclic parallelogram is a rectangle (NCERT 9.3 Q12)</td><td>Opposite angles are equal <i>and</i> add up to 180°, so each is 90°.</td></tr>
+<tr><td>An isosceles trapezium is cyclic (NCERT 9.3 Q8)</td><td>Its base angles are equal, so the co-interior angles give ∠A + ∠C = 180°.</td></tr>
+<tr><td>If the diagonals of a cyclic quadrilateral are diameters, it is a rectangle (9.3 Q7)</td><td>Each vertex angle is an angle in a semicircle.</td></tr>
+<tr><td>A rhombus (that is not a square) is <b>not</b> cyclic</td><td>Its opposite angles are equal but do not add up to 180°.</td></tr>
+<tr><td>The quadrilateral formed by the angle bisectors of any quadrilateral is cyclic (NCERT Example 5)</td><td>Opposite angles are 180° − ½(∠A + ∠B) and 180° − ½(∠C + ∠D), which add up to 180°.</td></tr>
+</table>
+<div class="box ex"><span class="tag">Worked example (NCERT Example 3)</span>ABCD is cyclic, ∠DBC = 55° and ∠BAC = 45°. ∠CAD = ∠DBC = 55° (same segment), so ∠BAD = 100° and ∠BCD = 180° − 100° = <b>80°</b>.</div>
+<div class="box ex"><span class="tag">Worked example (NCERT 9.3 Q6)</span>∠DBC = 70°, ∠BAC = 30°, and AB = BC; find ∠ECD. ∠BAD = 30° + 70° = 100°, so ∠BCD = 80°. AB = BC gives ∠BCA = ∠BAC = 30°, so ∠ECD = 80° − 30° = <b>50°</b>.</div>
+<div class="box ex"><span class="tag">Worked example (NCERT 9.3 Q5)</span>AC and BD meet at E, ∠BEC = 130° and ∠ECD = 20°. ∠BEC is the exterior angle of △DEC, so ∠EDC = 130° − 20° = 110°. Then ∠BAC = ∠BDC = <b>110°</b> (same segment).</div>
+<div class="box ex"><span class="tag">Worked example (NCERT 9.3 Q9)</span>Two circles meet at B and C, and lines ABD and PBQ pass through B. ∠ACP = ∠ABP (same segment in circle 1), ∠ABP = ∠QBD (vertically opposite), and ∠QBD = ∠QCD (same segment in circle 2). So <b>∠ACP = ∠QCD</b>.</div>
+<div class="trap"><span class="tag">Common trap</span>The angles that add up to 180° are <b>opposite</b> angles, not adjacent ones. In ABCD, those are A with C and B with D.</div>
+<div class="check">
+<h3>Checkpoint</h3>
+<div class="q"><p>1. ABCD is cyclic and ∠B = 68°. Find ∠D.</p><details><summary>Show answer</summary><div class="ans">112°.</div></details></div>
+<div class="q"><p>2. In cyclic ABCD, ∠A = (2x + 4)°, ∠B = (y + 3)°, ∠C = (2y + 10)° and ∠D = (4x − 5)°. Find x and y.</p><details><summary>Show answer</summary><div class="ans">∠A + ∠C = 180° gives x + y = 83. ∠B + ∠D = 180° gives 4x + y = 182. So x = 33, y = 50, and the angles are 70°, 53°, 110°, 127°.</div></details></div>
+<div class="q"><p><span class="star">★</span> 3. In cyclic ABCD, AB is extended to E and ∠CBE = 105°. Find ∠ADC.</p><details><summary>Show answer</summary><div class="ans">The exterior angle equals the interior opposite angle, so ∠ADC = 105°.</div></details></div>
+<div class="q"><p><span class="star">★</span> 4. Prove that a cyclic trapezium (AB ∥ DC) has equal non-parallel sides.</p><details><summary>Show answer</summary><div class="ans">AB ∥ DC gives ∠A + ∠D = 180°. Cyclic gives ∠A + ∠C = 180°. So ∠C = ∠D, the base angles at DC are equal, and therefore AD = BC.</div></details></div>
+</div>
+<div class="done-row"><button data-done>Mark section complete</button><span>Got all 4 right?</span></div>
+</section>
+
+<!-- 09 -->
+<section class="unit" id="s9" data-sec>
+<h2><span class="num">09</span>Choosing the right tool: a problem-solving guide</h2>
+<table>
+<tr><th>If the question has…</th><th>Reach for…</th></tr>
+<tr><td>A chord length and a distance or radius</td><td>Perpendicular from O and the right triangle r² = d² + (l/2)² (Sec 03)</td></tr>
+<tr><td>Two parallel chords</td><td>Distances from O; check <b>both</b> the same-side and opposite-side cases</td></tr>
+<tr><td>Two intersecting circles</td><td>The line of centres is the perpendicular bisector of the common chord</td></tr>
+<tr><td>Equal chords</td><td>Equal angles at the centre, equal distances, congruent arcs (Sec 02, 04)</td></tr>
+<tr><td>An angle at the centre and an angle on the circle</td><td>Theorem 9.7 (double); check which arc the point sees</td></tr>
+<tr><td>Two angles on the circle standing on the same chord</td><td>Same segment, so they are equal (Theorem 9.8)</td></tr>
+<tr><td>A diameter</td><td>A 90° angle at every point on the circle</td></tr>
+<tr><td>Four points on a circle forming a quadrilateral</td><td>Opposite angles add up to 180°; exterior angle = interior opposite angle</td></tr>
+<tr><td>"Prove these points are concyclic"</td><td>Equal angles on the same side (9.9), or opposite angles adding up to 180° (9.11)</td></tr>
+<tr><td>Radii OA and OB in a triangle</td><td>The triangle is isosceles, so the base angles are equal</td></tr>
+</table>
+<div class="box ex"><span class="tag">Worked example: multi-step</span>Triangle ABC is inscribed with O inside it, ∠OBC = 20° and ∠OCA = 30°. Find ∠OAB.<br>∠BOC = 140°, so ∠BAC = 70°. ∠AOC = 120°, so ∠ABC = 60°. Then ∠ACB = 50°, so ∠AOB = 100° and ∠OAB = (180° − 100°)/2 = <b>40°</b>.</div>
+<div class="check">
+<h3>Checkpoint</h3>
+<div class="q"><p><span class="star">★</span> 1. ABCD is cyclic and AB is a diameter. ∠ADC = 130°. Find ∠BAC.</p><details><summary>Show answer</summary><div class="ans">∠ABC = 180° − 130° = 50°, and ∠ACB = 90° (semicircle). So ∠BAC = 40°.</div></details></div>
+<div class="q"><p><span class="star">★</span> 2. In acute △ABC, ∠B = 65°, and BE, CF are altitudes. Find ∠AEF.</p><details><summary>Show answer</summary><div class="ans">B, C, E, F are concyclic (∠BEC = ∠BFC = 90°). In cyclic quadrilateral BCEF, the exterior angle ∠AEF equals the interior opposite angle ∠FBC = 65°.</div></details></div>
+</div>
+<div class="done-row"><button data-done>Mark section complete</button><span>Got both right?</span></div>
+</section>
+
+<!-- traps -->
+<section class="unit" id="traps">
+<h2><span class="num">!!</span>Common traps before the test</h2>
+<ul class="traps">
+<li><b>Minor or major arc?</b> The angle at a point on the minor arc is obtuse; on the major arc it is acute. The two add up to 180°.</li>
+<li><b>Reflex angle.</b> When the point on the circle is on the minor arc, the centre angle to double back from is the reflex angle (360° − ∠AOB).</li>
+<li><b>Parallel chords have two cases.</b> Same side: subtract the distances. Opposite sides: add them. If the side isn't stated, consider both.</li>
+<li><b>Half the chord, not the whole chord.</b> In r² = d² + (l/2)², use <i>half</i> the chord length.</li>
+<li><b>The diameter exception.</b> "A line through O that bisects a chord is perpendicular to it" fails for a diameter.</li>
+<li><b>Same side matters.</b> Equal angles prove concyclicity only when the two points are on the same side of the segment.</li>
+<li><b>Opposite, not adjacent.</b> Only opposite angles of a cyclic quadrilateral add up to 180°.</li>
+<li><b>Rhombus and parallelogram.</b> They are not cyclic unless they are a square or a rectangle.</li>
+<li><b>Radii make isosceles triangles.</b> Use equal base angles every time two radii appear in a triangle.</li>
+<li><b>Write the reason.</b> In board answers, write the theorem in brackets after each step: (angle in a semicircle), (same segment), (opposite angles of a cyclic quadrilateral), (CPCT).</li>
+</ul>
+</section>
+
+<!-- summary -->
+<section class="unit" id="summary">
+<h2><span class="num">∑</span>One-page summary</h2>
+<table>
+<tr><th>#</th><th>Result</th><th>Converse?</th></tr>
+<tr><td>9.1</td><td>Equal chords subtend equal angles at the centre.</td><td>9.2: equal centre angles mean equal chords.</td></tr>
+<tr><td>9.3</td><td>The perpendicular from the centre bisects the chord.</td><td>9.4: the line from the centre bisecting a chord is perpendicular to it.</td></tr>
+<tr><td>9.5</td><td>Equal chords are equidistant from the centre.</td><td>9.6: chords equidistant from the centre are equal.</td></tr>
+<tr><td>—</td><td>Equal chords have congruent arcs.</td><td>Congruent arcs have equal chords and equal centre angles.</td></tr>
+<tr><td>9.7</td><td>Angle at the centre = 2 × angle at the remaining part of the circle.</td><td>—</td></tr>
+<tr><td>9.8</td><td>Angles in the same segment are equal. The angle in a semicircle = 90°.</td><td>9.9: equal angles on the same side mean the points are concyclic.</td></tr>
+<tr><td>9.10</td><td>Opposite angles of a cyclic quadrilateral add up to 180°.</td><td>9.11: opposite angles adding up to 180° mean the quadrilateral is cyclic.</td></tr>
+</table>
+<div class="formula">Chord: l = 2√(r² − d²) &nbsp;·&nbsp; Centre angle = 2 × angle on circle &nbsp;·&nbsp; ∠A + ∠C = 180°</div>
+</section>
+
+<footer>Based on NCERT Mathematics Class IX, Chapter 9 (Circles), 2025–26 reprint.</footer>
+</div>
+
+<script>
+(function(){
+  var KEY='circles-notes-done';
+  var secs=[].slice.call(document.querySelectorAll('[data-sec]'));
+  var done={};
+  try{done=JSON.parse(localStorage.getItem(KEY)||'{}')||{};}catch(e){done={};}
+  function save(){try{localStorage.setItem(KEY,JSON.stringify(done));}catch(e){}}
+  function render(){
+    var n=0;
+    secs.forEach(function(s){
+      var b=s.querySelector('[data-done]');
+      var on=!!done[s.id];
+      if(on)n++;
+      s.classList.toggle('done',on);
+      b.classList.toggle('on',on);
+      b.textContent=on?'✓ Section complete':'Mark section complete';
+    });
+    document.getElementById('fill').style.width=(n/secs.length*100)+'%';
+    document.getElementById('plabel').textContent=n+' of '+secs.length+' sections complete';
+  }
+  secs.forEach(function(s){
+    s.querySelector('[data-done]').addEventListener('click',function(){
+      done[s.id]=!done[s.id]; save(); render();
+    });
+  });
+  render();
+})();
+</script>
+</body>
+</html>
