@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Polynomials Revision Notes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,500;7..72,650&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root {
+  /* Layout: sticky left contents rail with progress, single reading column of section cards */
+  --ink: #16202e;
+  --muted: #566274;
+  --paper: #f4f6f8;
+  --card: #ffffff;
+  --line: #d9dfe6;
+  --accent: #1d5fa8;
+  --accent-soft: #e5eef8;
+  --formula: #fff7e6;
+  --formula-line: #e9c46a;
+  --good: #217a4b;
+  --good-soft: #e3f3ea;
+  --display: "Literata", Georgia, "Times New Roman", serif;
+  --body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --ink: #e6ebf1; --muted: #9aa7b8; --paper: #0f141b; --card: #171e28; --line: #2a3443;
+    --accent: #7db3ee; --accent-soft: #1b2b40; --formula: #2a2414; --formula-line: #8a6d24;
+    --good: #6fd29b; --good-soft: #17301f; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --ink: #e6ebf1; --muted: #9aa7b8; --paper: #0f141b; --card: #171e28; --line: #2a3443;
+  --accent: #7db3ee; --accent-soft: #1b2b40; --formula: #2a2414; --formula-line: #8a6d24;
+  --good: #6fd29b; --good-soft: #17301f; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body { background: var(--paper); color: var(--ink); font: 16px/1.65 var(--body); }
+a { color: var(--accent); }
+.wrap { display: grid; grid-template-columns: 250px minmax(0, 1fr); gap: 32px; max-width: 1120px; margin: 0 auto; padding: 28px 20px 60px; }
+aside { position: sticky; top: 20px; align-self: start; display: grid; gap: 14px; }
+aside h2 { font: 600 13px/1.3 var(--body); text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin: 0; }
+.progress { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 14px; display: grid; gap: 8px; }
+.bar { height: 8px; background: var(--line); border-radius: 4px; overflow: hidden; }
+.bar span { display: block; height: 100%; width: 0; background: var(--good); transition: width .3s; }
+.progress p { margin: 0; font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; }
+nav ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
+nav a { display: flex; gap: 8px; align-items: baseline; padding: 6px 8px; border-radius: 6px; text-decoration: none; color: var(--ink); font-size: 14px; line-height: 1.35; }
+nav a:hover, nav a:focus-visible { background: var(--accent-soft); outline: none; }
+nav a .tick { width: 14px; flex: none; color: var(--good); font-weight: 600; }
+main { display: grid; gap: 28px; min-width: 0; }
+header.top h1 { font: 650 clamp(28px, 4vw, 40px)/1.15 var(--display); margin: 0 0 8px; text-wrap: balance; }
+header.top p { margin: 0 0 6px; color: var(--muted); max-width: 68ch; }
+.howto { background: var(--accent-soft); border-radius: 10px; padding: 14px 18px; max-width: 70ch; }
+.howto ul { margin: 6px 0 0; padding-left: 20px; }
+section.unit { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 26px 28px; scroll-margin-top: 16px; }
+section.unit.done { border-color: var(--good); }
+section.unit > h2 { font: 650 24px/1.25 var(--display); margin: 0 0 12px; text-wrap: balance; display: flex; gap: 12px; align-items: baseline; }
+section.unit > h2 .num { font: 500 15px var(--mono); color: var(--accent); }
+h3 { font: 600 17px/1.3 var(--body); margin: 22px 0 8px; }
+p, li { max-width: 72ch; }
+ul, ol { padding-left: 22px; }
+li { margin: 4px 0; }
+.formula { background: var(--formula); border-left: 4px solid var(--formula-line); padding: 10px 16px; margin: 14px 0; font: 500 18px/1.5 var(--mono); border-radius: 0 8px 8px 0; overflow-x: auto; }
+.formula small { display: block; font: 400 13px var(--body); color: var(--muted); }
+.example { border: 1px dashed var(--line); border-radius: 8px; padding: 10px 16px; margin: 14px 0; }
+.example strong:first-child { color: var(--accent); }
+.tablewrap { overflow-x: auto; margin: 12px 0; }
+table { border-collapse: collapse; width: 100%; font-size: 15px; }
+th, td { border-bottom: 1px solid var(--line); padding: 8px 10px; text-align: left; vertical-align: top; }
+th { font-weight: 600; background: var(--accent-soft); }
+figure { margin: 16px 0; }
+figure svg { width: 100%; max-width: 560px; height: auto; display: block; }
+figcaption { font-size: 13px; color: var(--muted); }
+svg .stroke { stroke: var(--ink); }
+svg .fillink { fill: var(--ink); }
+svg .acc { stroke: var(--accent); fill: none; }
+svg .accfill { fill: var(--accent); }
+svg text { fill: var(--ink); font: 13px var(--body); }
+.check { margin-top: 22px; border-top: 2px solid var(--accent); padding-top: 14px; }
+.check h3 { margin-top: 0; color: var(--accent); }
+.check > ol { display: grid; gap: 12px; padding-left: 24px; }
+.check li { max-width: 74ch; }
+.star { color: #c48a12; font-weight: 600; }
+details { margin-top: 6px; }
+summary { cursor: pointer; color: var(--accent); font-size: 14px; font-weight: 500; width: fit-content; }
+summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+details .ans { background: var(--good-soft); border-radius: 8px; padding: 8px 12px; margin-top: 6px; font-size: 15px; }
+.done-row { margin-top: 18px; display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+.done-btn { font: 500 15px var(--body); padding: 9px 16px; border-radius: 8px; border: 1px solid var(--good); background: transparent; color: var(--good); cursor: pointer; }
+.done-btn:hover { background: var(--good-soft); }
+.done-btn:focus-visible { outline: 2px solid var(--good); outline-offset: 2px; }
+.done-btn[aria-pressed="true"] { background: var(--good); color: var(--card); }
+.done-row span { font-size: 14px; color: var(--muted); }
+.traps li { margin: 8px 0; }
+@media (max-width: 860px) {
+  .wrap { grid-template-columns: 1fr; }
+  aside { position: static; }
+  section.unit { padding: 20px 18px; }
+}
+@media (prefers-reduced-motion: reduce) { .bar span { transition: none; } }
+
+sup { font-size: .72em; line-height: 0; }
+.formula sup { font-size: .7em; }
+</style>
+</head>
+<body>
+<div class="wrap">
+<aside>
+  <div class="progress">
+    <h2>Your progress</h2>
+    <div class="bar"><span id="bar"></span></div>
+    <p id="count">0 sections complete</p>
+  </div>
+  <nav aria-label="Sections">
+    <h2>Sections</h2>
+    <ol id="toc"></ol>
+  </nav>
+</aside>
+<main>
+<header class="top">
+  <h1>Polynomials</h1>
+  <p>Class 9 Mathematics, Chapter 2. Revision notes covering the whole chapter: vocabulary, zeroes, the Factor Theorem, factorisation and the algebraic identities.</p>
+  <div class="howto">
+    <strong>How to use these notes</strong>
+    <ul>
+      <li>Read a section, then answer its quick-check questions on paper before opening the answers.</li>
+      <li>Questions marked <span class="star">★</span> are at the level of the JEE-style tests.</li>
+      <li>Press <em>Mark section complete</em> only when you got every question right. Then move on.</li>
+    </ul>
+  </div>
+</header>
+
+<section class="unit" id="basics" data-title="Polynomials and their vocabulary">
+<h2><span class="num">01</span>Polynomials and their vocabulary</h2>
+
+<p>A <strong>polynomial in one variable</strong> is an algebraic expression in which every power of the variable is a <strong>whole number</strong> (0, 1, 2, 3, ...). The coefficients can be any real numbers.</p>
+<div class="tablewrap"><table>
+<thead><tr><th>Expression</th><th>Polynomial?</th><th>Reason</th></tr></thead>
+<tbody>
+<tr><td>x<sup>3</sup> – x<sup>2</sup> + 4x + 7</td><td>Yes</td><td>Powers 3, 2, 1, 0 are whole numbers</td></tr>
+<tr><td>√2 x<sup>2</sup> + π</td><td>Yes</td><td>The coefficients may be irrational; the powers are whole numbers</td></tr>
+<tr><td>x + 1/x</td><td>No</td><td>1/x = x<sup>–1</sup>; the power –1 is not a whole number</td></tr>
+<tr><td>√x + 3</td><td>No</td><td>√x = x<sup>1/2</sup>; the power ½ is not a whole number</td></tr>
+<tr><td>x<sup>10</sup> + y<sup>3</sup> + t<sup>50</sup></td><td>Not in one variable</td><td>It has three variables</td></tr>
+</tbody></table></div>
+<ul>
+  <li><strong>Terms and coefficients:</strong> in –x<sup>3</sup> + 4x<sup>2</sup> + 7x – 2 the terms are –x<sup>3</sup>, 4x<sup>2</sup>, 7x and –2. The coefficient of x<sup>3</sup> is –1, of x<sup>2</sup> is 4, of x is 7, and –2 is the constant term (the coefficient of x<sup>0</sup>).</li>
+  <li><strong>By number of terms:</strong> monomial (1 term), binomial (2 terms), trinomial (3 terms).</li>
+  <li><strong>Degree:</strong> the highest power of the variable. The degree of 3x<sup>7</sup> – 4x<sup>6</sup> + x + 9 is 7.</li>
+  <li><strong>Constant polynomials:</strong> 2, –5, 7. A non-zero constant has degree 0 (since 2 = 2x<sup>0</sup>).</li>
+  <li><strong>Zero polynomial:</strong> the constant polynomial 0. Its degree is <strong>not defined</strong>.</li>
+</ul>
+<div class="tablewrap"><table>
+<thead><tr><th>Degree</th><th>Name</th><th>General form</th><th>Most terms it can have</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Linear</td><td>ax + b, a ≠ 0</td><td>2</td></tr>
+<tr><td>2</td><td>Quadratic</td><td>ax<sup>2</sup> + bx + c, a ≠ 0</td><td>3</td></tr>
+<tr><td>3</td><td>Cubic</td><td>ax<sup>3</sup> + bx<sup>2</sup> + cx + d, a ≠ 0</td><td>4</td></tr>
+</tbody></table></div>
+<p>A polynomial of degree n has the form a<sub>n</sub>x<sup>n</sup> + a<sub>n–1</sub>x<sup>n–1</sup> + ... + a<sub>1</sub>x + a<sub>0</sub>, where a<sub>n</sub> ≠ 0. We name polynomials p(x), q(x), r(t) and so on.</p>
+
+<div class="check">
+<h3>Quick check</h3>
+<ol>
+<li>Which of these are polynomials in one variable? (i) 3x<sup>2</sup> – √5 x + 1 &nbsp; (ii) 2/x + x &nbsp; (iii) y<sup>3</sup> – 4 &nbsp; (iv) √t + t
+<details><summary>Show answer</summary><div class="ans">(i) and (iii). In (ii) the power of x is –1, and in (iv) it is ½.</div></details></li>
+<li>Write the degree of 7x<sup>3</sup> – (π/2)x<sup>2</sup> + 4 and the coefficient of x<sup>2</sup>.
+<details><summary>Show answer</summary><div class="ans">Degree 3; the coefficient of x<sup>2</sup> is –π/2.</div></details></li>
+<li>Classify 5 – t<sup>2</sup> by its number of terms and by its degree.
+<details><summary>Show answer</summary><div class="ans">A binomial; quadratic (degree 2).</div></details></li>
+<li>What are the degrees of the polynomials 9 and 0?
+<details><summary>Show answer</summary><div class="ans">9 has degree 0. The degree of the zero polynomial 0 is not defined.</div></details></li>
+<li><span class="star">★</span> p(x) has degree 2 and q(x) has degree 3. What is the degree of p(x) × q(x)? Can p(x) + q(x) have degree 2?
+<details><summary>Show answer</summary><div class="ans">The product has degree 2 + 3 = 5. The sum always has degree 3, because nothing in p(x) can cancel the x<sup>3</sup> term of q(x).</div></details></li>
+</ol>
+<div class="done-row"><button class="done-btn" type="button" aria-pressed="false">Mark section complete</button><span>Got all 5 right?</span></div>
+</div>
+</section>
+<section class="unit" id="zeroes" data-title="Value of a polynomial and its zeroes">
+<h2><span class="num">02</span>Value of a polynomial and its zeroes</h2>
+
+<p>The <strong>value</strong> of p(x) at x = a is found by replacing x with a. It is written p(a).</p>
+<div class="example"><strong>Example.</strong> For p(x) = 5x<sup>3</sup> – 2x<sup>2</sup> + 3x – 2: p(1) = 5 – 2 + 3 – 2 = 4 and p(0) = –2.</div>
+<div class="formula">c is a zero of p(x) when p(c) = 0<small>c is then also called a root of the equation p(x) = 0</small></div>
+<ul>
+  <li><strong>Linear polynomial ax + b:</strong> exactly one zero, x = –b/a. The zero of 2x + 1 is –1/2.</li>
+  <li><strong>Non-zero constant polynomial</strong> (such as 5): no zero at all.</li>
+  <li><strong>Zero polynomial:</strong> every real number is a zero.</li>
+  <li>A zero of a polynomial need not be 0, and 0 may be a zero. x<sup>2</sup> – 2x has the zeroes 0 and 2.</li>
+  <li>A polynomial can have more than one zero.</li>
+</ul>
+<p><strong>To check whether a number is a zero</strong>, substitute it and see whether the value is 0. To find the zero of a linear polynomial, solve p(x) = 0.</p>
+
+<div class="check">
+<h3>Quick check</h3>
+<ol>
+<li>For p(x) = 2x<sup>3</sup> – x<sup>2</sup> + 3, find p(–1). What does the answer tell you?
+<details><summary>Show answer</summary><div class="ans">p(–1) = –2 – 1 + 3 = 0, so –1 is a zero of p(x).</div></details></li>
+<li>Find the zero of 4x – 7.
+<details><summary>Show answer</summary><div class="ans">4x – 7 = 0 gives x = 7/4.</div></details></li>
+<li>Are 1 and –2 zeroes of x<sup>2</sup> + x – 2?
+<details><summary>Show answer</summary><div class="ans">Yes: 1 + 1 – 2 = 0 and 4 – 2 – 2 = 0.</div></details></li>
+<li>How many zeroes does the constant polynomial 9 have?
+<details><summary>Show answer</summary><div class="ans">None. Its value is 9 for every x.</div></details></li>
+<li><span class="star">★</span> If 2 is a zero of p(x) = x<sup>2</sup> – kx + 6, find k and the other zero.
+<details><summary>Show answer</summary><div class="ans">p(2) = 4 – 2k + 6 = 0 gives k = 5. Then x<sup>2</sup> – 5x + 6 = (x – 2)(x – 3), so the other zero is 3.</div></details></li>
+</ol>
+<div class="done-row"><button class="done-btn" type="button" aria-pressed="false">Mark section complete</button><span>Got all 5 right?</span></div>
+</div>
+</section>
+<section class="unit" id="factor" data-title="The Factor Theorem">
+<h2><span class="num">03</span>The Factor Theorem</h2>
+
+<div class="formula">x – a is a factor of p(x) &nbsp;⇔&nbsp; p(a) = 0<small>for a polynomial p(x) of degree 1 or more and any real number a</small></div>
+<p><strong>Why it works:</strong> dividing p(x) by x – a gives p(x) = (x – a) q(x) + p(a). If p(a) = 0, then p(x) = (x – a) q(x), so x – a is a factor. If x – a is a factor, then p(a) = (a – a) q(a) = 0.</p>
+<div class="tablewrap"><table>
+<thead><tr><th>To test this factor</th><th>Find its zero</th><th>Check</th></tr></thead>
+<tbody>
+<tr><td>x – a</td><td>x = a</td><td>p(a) = 0</td></tr>
+<tr><td>x + a</td><td>x = –a</td><td>p(–a) = 0</td></tr>
+<tr><td>ax + b</td><td>x = –b/a</td><td>p(–b/a) = 0</td></tr>
+</tbody></table></div>
+<div class="example"><strong>Example 1.</strong> Is x + 2 a factor of x<sup>3</sup> + 3x<sup>2</sup> + 5x + 6? p(–2) = –8 + 12 – 10 + 6 = 0. Yes.</div>
+<div class="example"><strong>Example 2 (finding k).</strong> x – 1 is a factor of 4x<sup>3</sup> + 3x<sup>2</sup> – 4x + k. So p(1) = 4 + 3 – 4 + k = 0, giving k = –3.</div>
+
+<div class="check">
+<h3>Quick check</h3>
+<ol>
+<li>Is x + 1 a factor of x<sup>3</sup> + x<sup>2</sup> + x + 1?
+<details><summary>Show answer</summary><div class="ans">p(–1) = –1 + 1 – 1 + 1 = 0. Yes.</div></details></li>
+<li>Find k if x – 2 is a factor of x<sup>2</sup> – kx + 6.
+<details><summary>Show answer</summary><div class="ans">p(2) = 4 – 2k + 6 = 0, so k = 5.</div></details></li>
+<li>Is 2x + 1 a factor of 2x<sup>2</sup> + 7x + 3?
+<details><summary>Show answer</summary><div class="ans">p(–1/2) = 1/2 – 7/2 + 3 = 0. Yes.</div></details></li>
+<li><span class="star">★</span> Both x – 1 and x + 1 are factors of x<sup>3</sup> + ax<sup>2</sup> + bx – 2. Find a and b.
+<details><summary>Show answer</summary><div class="ans">p(1) = 0 gives a + b = 1. p(–1) = 0 gives a – b = 3. So a = 2 and b = –1. Check: x<sup>3</sup> + 2x<sup>2</sup> – x – 2 = (x<sup>2</sup> – 1)(x + 2).</div></details></li>
+<li><span class="star">★</span> If x – k is a factor of x<sup>3</sup> – kx<sup>2</sup> + 2x – 6, find k.
+<details><summary>Show answer</summary><div class="ans">p(k) = k<sup>3</sup> – k<sup>3</sup> + 2k – 6 = 0, so k = 3.</div></details></li>
+</ol>
+<div class="done-row"><button class="done-btn" type="button" aria-pressed="false">Mark section complete</button><span>Got all 5 right?</span></div>
+</div>
+</section>
+<section class="unit" id="factorise" data-title="Factorising quadratics and cubics">
+<h2><span class="num">04</span>Factorising quadratics and cubics</h2>
+
+<h3>Quadratics: splitting the middle term</h3>
+<p>To factorise ax<sup>2</sup> + bx + c, find two numbers whose <strong>sum is b</strong> and whose <strong>product is ac</strong>. Split bx using them, then group.</p>
+<div class="example"><strong>Example.</strong> 6x<sup>2</sup> + 17x + 5: sum 17, product 6 × 5 = 30. The numbers are 2 and 15.<br>
+6x<sup>2</sup> + 2x + 15x + 5 = 2x(3x + 1) + 5(3x + 1) = (3x + 1)(2x + 5).</div>
+<h3>Cubics: find one factor, then finish</h3>
+<ol>
+  <li>Try the factors of the constant term (±1, ±2, ...) until one gives p(a) = 0. Then x – a is a factor.</li>
+  <li>Take out (x – a) by regrouping the terms (or by dividing).</li>
+  <li>Factorise the quadratic that is left by splitting its middle term.</li>
+</ol>
+<div class="example"><strong>Example.</strong> p(x) = x<sup>3</sup> – 2x<sup>2</sup> – 5x + 6. Trying x = 1: p(1) = 1 – 2 – 5 + 6 = 0, so x – 1 is a factor.<br>
+x<sup>3</sup> – x<sup>2</sup> – x<sup>2</sup> + x – 6x + 6 = x<sup>2</sup>(x – 1) – x(x – 1) – 6(x – 1) = (x – 1)(x<sup>2</sup> – x – 6) = (x – 1)(x – 3)(x + 2).</div>
+<p><strong>Check your answer:</strong> the constant terms of the factors must multiply to give the constant term of the polynomial. Here (–1)(–3)(2) = 6.</p>
+
+<div class="check">
+<h3>Quick check</h3>
+<ol>
+<li>Factorise 2x<sup>2</sup> + 7x + 3.
+<details><summary>Show answer</summary><div class="ans">Sum 7, product 6: use 6 and 1. (2x + 1)(x + 3).</div></details></li>
+<li>Factorise 3x<sup>2</sup> – x – 4.
+<details><summary>Show answer</summary><div class="ans">Sum –1, product –12: use –4 and 3. (3x – 4)(x + 1).</div></details></li>
+<li>Factorise x<sup>3</sup> + 2x<sup>2</sup> – x – 2.
+<details><summary>Show answer</summary><div class="ans">x<sup>2</sup>(x + 2) – (x + 2) = (x + 2)(x – 1)(x + 1).</div></details></li>
+<li><span class="star">★</span> Factorise x<sup>3</sup> – 7x + 6 and write its zeroes.
+<details><summary>Show answer</summary><div class="ans">p(1) = 0. (x – 1)(x<sup>2</sup> + x – 6) = (x – 1)(x – 2)(x + 3). Zeroes: 1, 2 and –3.</div></details></li>
+<li><span class="star">★</span> The area of a rectangle is 25a<sup>2</sup> – 35a + 12. Give possible expressions for its length and breadth.
+<details><summary>Show answer</summary><div class="ans">Sum –35, product 300: use –20 and –15. (5a – 4)(5a – 3).</div></details></li>
+</ol>
+<div class="done-row"><button class="done-btn" type="button" aria-pressed="false">Mark section complete</button><span>Got all 5 right?</span></div>
+</div>
+</section>
+<section class="unit" id="identities" data-title="Algebraic identities">
+<h2><span class="num">05</span>Algebraic identities</h2>
+
+<p>An identity is true for <strong>all</strong> values of its variables. Learn these eight, with their signs.</p>
+<div class="tablewrap"><table>
+<thead><tr><th>No.</th><th>Identity</th></tr></thead>
+<tbody>
+<tr><td>I</td><td>(x + y)<sup>2</sup> = x<sup>2</sup> + 2xy + y<sup>2</sup></td></tr>
+<tr><td>II</td><td>(x – y)<sup>2</sup> = x<sup>2</sup> – 2xy + y<sup>2</sup></td></tr>
+<tr><td>III</td><td>x<sup>2</sup> – y<sup>2</sup> = (x + y)(x – y)</td></tr>
+<tr><td>IV</td><td>(x + a)(x + b) = x<sup>2</sup> + (a + b)x + ab</td></tr>
+<tr><td>V</td><td>(x + y + z)<sup>2</sup> = x<sup>2</sup> + y<sup>2</sup> + z<sup>2</sup> + 2xy + 2yz + 2zx</td></tr>
+<tr><td>VI</td><td>(x + y)<sup>3</sup> = x<sup>3</sup> + y<sup>3</sup> + 3xy(x + y) = x<sup>3</sup> + 3x<sup>2</sup>y + 3xy<sup>2</sup> + y<sup>3</sup></td></tr>
+<tr><td>VII</td><td>(x – y)<sup>3</sup> = x<sup>3</sup> – y<sup>3</sup> – 3xy(x – y) = x<sup>3</sup> – 3x<sup>2</sup>y + 3xy<sup>2</sup> – y<sup>3</sup></td></tr>
+<tr><td>VIII</td><td>x<sup>3</sup> + y<sup>3</sup> + z<sup>3</sup> – 3xyz = (x + y + z)(x<sup>2</sup> + y<sup>2</sup> + z<sup>2</sup> – xy – yz – zx)</td></tr>
+</tbody></table></div>
+<h3>Results that follow from them</h3>
+<div class="formula">x<sup>3</sup> + y<sup>3</sup> = (x + y)(x<sup>2</sup> – xy + y<sup>2</sup>)<br>x<sup>3</sup> – y<sup>3</sup> = (x – y)(x<sup>2</sup> + xy + y<sup>2</sup>)</div>
+<div class="formula">If x + y + z = 0, then x<sup>3</sup> + y<sup>3</sup> + z<sup>3</sup> = 3xyz</div>
+<div class="formula">x<sup>3</sup> + y<sup>3</sup> + z<sup>3</sup> – 3xyz = ½ (x + y + z)[(x – y)<sup>2</sup> + (y – z)<sup>2</sup> + (z – x)<sup>2</sup>]</div>
+<h3>How they are used</h3>
+<ul>
+  <li><strong>Quick arithmetic:</strong> 105 × 106 = (100 + 5)(100 + 6) = 10000 + 1100 + 30 = 11130. Also 104<sup>3</sup> = (100 + 4)<sup>3</sup> = 1000000 + 64 + 3(100)(4)(104) = 1124864.</li>
+  <li><strong>Expanding with negative terms:</strong> treat a minus sign as part of the term. (4a – 2b – 3c)<sup>2</sup> = [4a + (–2b) + (–3c)]<sup>2</sup> = 16a<sup>2</sup> + 4b<sup>2</sup> + 9c<sup>2</sup> – 16ab + 12bc – 24ac.</li>
+  <li><strong>Factorising by spotting a pattern:</strong> 8x<sup>3</sup> + 27y<sup>3</sup> + 36x<sup>2</sup>y + 54xy<sup>2</sup> = (2x)<sup>3</sup> + (3y)<sup>3</sup> + 3(2x)(3y)(2x + 3y) = (2x + 3y)<sup>3</sup>.</li>
+  <li><strong>Sum of cubes without cubing:</strong> (–12)<sup>3</sup> + 7<sup>3</sup> + 5<sup>3</sup>. Since –12 + 7 + 5 = 0, the value is 3(–12)(7)(5) = –1260.</li>
+  <li><strong>Finding one quantity from others:</strong> a<sup>2</sup> + b<sup>2</sup> + c<sup>2</sup> = (a + b + c)<sup>2</sup> – 2(ab + bc + ca), and x<sup>3</sup> + y<sup>3</sup> = (x + y)<sup>3</sup> – 3xy(x + y).</li>
+</ul>
+
+<div class="check">
+<h3>Quick check</h3>
+<ol>
+<li>Evaluate 97 × 103 without multiplying directly.
+<details><summary>Show answer</summary><div class="ans">(100 – 3)(100 + 3) = 10000 – 9 = 9991.</div></details></li>
+<li>Expand (2x – y + 3z)<sup>2</sup>.
+<details><summary>Show answer</summary><div class="ans">4x<sup>2</sup> + y<sup>2</sup> + 9z<sup>2</sup> – 4xy – 6yz + 12xz.</div></details></li>
+<li>Expand (2a + 3b)<sup>3</sup>.
+<details><summary>Show answer</summary><div class="ans">8a<sup>3</sup> + 36a<sup>2</sup>b + 54ab<sup>2</sup> + 27b<sup>3</sup>.</div></details></li>
+<li>Factorise 27x<sup>3</sup> – 8y<sup>3</sup>.
+<details><summary>Show answer</summary><div class="ans">(3x – 2y)(9x<sup>2</sup> + 6xy + 4y<sup>2</sup>).</div></details></li>
+<li>Factorise 8x<sup>3</sup> + y<sup>3</sup> + 27z<sup>3</sup> – 18xyz.
+<details><summary>Show answer</summary><div class="ans">(2x + y + 3z)(4x<sup>2</sup> + y<sup>2</sup> + 9z<sup>2</sup> – 2xy – 3yz – 6xz).</div></details></li>
+<li><span class="star">★</span> If a + b + c = 6 and ab + bc + ca = 11, find a<sup>2</sup> + b<sup>2</sup> + c<sup>2</sup>.
+<details><summary>Show answer</summary><div class="ans">36 – 2(11) = 14.</div></details></li>
+<li><span class="star">★</span> If x + y = 5 and xy = 6, find x<sup>3</sup> + y<sup>3</sup>.
+<details><summary>Show answer</summary><div class="ans">5<sup>3</sup> – 3(6)(5) = 125 – 90 = 35.</div></details></li>
+<li><span class="star">★</span> Real numbers a, b, c satisfy a<sup>2</sup> + b<sup>2</sup> + c<sup>2</sup> = ab + bc + ca. What can you say about them?
+<details><summary>Show answer</summary><div class="ans">½[(a – b)<sup>2</sup> + (b – c)<sup>2</sup> + (c – a)<sup>2</sup>] = 0. A sum of squares is zero only when each square is zero, so a = b = c.</div></details></li>
+</ol>
+<div class="done-row"><button class="done-btn" type="button" aria-pressed="false">Mark section complete</button><span>Got all 8 right?</span></div>
+</div>
+</section>
+<section class="unit" id="traps" data-title="Common mistakes">
+<h2><span class="num">✓</span>Common mistakes to avoid</h2>
+<ul class="traps">
+  <li><strong>Whole-number powers only.</strong> 1/x and √x make an expression a non-polynomial, but an irrational <em>coefficient</em> such as √2 does not.</li>
+  <li><strong>Degree of constants:</strong> a non-zero constant has degree 0; the zero polynomial has no defined degree.</li>
+  <li><strong>Sign in the Factor Theorem:</strong> for the factor x + 2 substitute x = –2, not 2.</li>
+  <li><strong>Splitting the middle term:</strong> the two numbers multiply to give a × c, not just c.</li>
+  <li><strong>(x + y)<sup>2</sup> is not x<sup>2</sup> + y<sup>2</sup></strong>, and (x + y)<sup>3</sup> is not x<sup>3</sup> + y<sup>3</sup>. Do not drop the middle terms.</li>
+  <li><strong>Signs in x<sup>3</sup> ± y<sup>3</sup>:</strong> the middle sign in the second bracket is the opposite of the sign in the first bracket.</li>
+  <li><strong>x<sup>3</sup> + y<sup>3</sup> + z<sup>3</sup> = 3xyz holds only when x + y + z = 0.</strong> Check the sum first.</li>
+  <li><strong>Negative terms in Identity V:</strong> a product of two negative terms gives a positive term, e.g. 2(–2b)(–3c) = +12bc.</li>
+  <li><strong>A zero of a polynomial need not be 0.</strong> 'Zero of p(x)' means a value of x that makes p(x) = 0.</li>
+</ul>
+</section>
+</main>
+</div>
+<script>
+(function () {
+  var KEY = "poly-notes-done";
+  var sections = Array.prototype.slice.call(document.querySelectorAll("section.unit[data-title]")).filter(function (s) { return s.querySelector(".done-btn"); });
+  var toc = document.getElementById("toc");
+  var done = {};
+  try { done = JSON.parse(localStorage.getItem(KEY) || "{}") || {}; } catch (e) { done = {}; }
+  var links = {};
+  document.querySelectorAll("section.unit[data-title]").forEach(function (s, i) {
+    var li = document.createElement("li");
+    var a = document.createElement("a");
+    a.href = "#" + s.id;
+    var t = document.createElement("span"); t.className = "tick"; t.setAttribute("aria-hidden", "true");
+    var label = document.createElement("span"); label.textContent = s.getAttribute("data-title");
+    a.appendChild(t); a.appendChild(label);
+    li.appendChild(a); toc.appendChild(li);
+    links[s.id] = t;
+  });
+  function save() { try { localStorage.setItem(KEY, JSON.stringify(done)); } catch (e) {} }
+  function render() {
+    var n = 0;
+    sections.forEach(function (s) {
+      var on = !!done[s.id];
+      if (on) n++;
+      s.classList.toggle("done", on);
+      var b = s.querySelector(".done-btn");
+      b.setAttribute("aria-pressed", on ? "true" : "false");
+      b.textContent = on ? "Section complete ✓ (click to undo)" : "Mark section complete";
+      if (links[s.id]) links[s.id].textContent = on ? "✓" : "";
+    });
+    document.getElementById("bar").style.width = (n / sections.length * 100) + "%";
+    document.getElementById("count").textContent = n + " of " + sections.length + " sections complete";
+  }
+  sections.forEach(function (s, i) {
+    s.querySelector(".done-btn").addEventListener("click", function () {
+      done[s.id] = !done[s.id];
+      save(); render();
+      if (done[s.id] && sections[i + 1]) {
+        sections[i + 1].scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+      }
+    });
+  });
+  render();
+})();
+</script>
+</body>
+</html>

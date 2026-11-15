@@ -105,9 +105,31 @@ window.CATALOG = {
         {
           "num": 2,
           "title": "Introduction to Linear Polynomials",
-          "notes": [],
-          "tests": [],
-          "updated": null
+          "notes": [
+            {
+              "href": "maths/02-introduction-to-linear-polynomials/Polynomials_Revision_Notes.html",
+              "label": "Notes"
+            }
+          ],
+          "tests": [
+            {
+              "href": "maths/02-introduction-to-linear-polynomials/Polynomials_CBSE_Test_Set1.pdf",
+              "label": "CBSE Set 1"
+            },
+            {
+              "href": "maths/02-introduction-to-linear-polynomials/Polynomials_CBSE_Test_Set2.pdf",
+              "label": "CBSE Set 2"
+            },
+            {
+              "href": "maths/02-introduction-to-linear-polynomials/Polynomials_JEE_Test_Set1.pdf",
+              "label": "JEE Set 1"
+            },
+            {
+              "href": "maths/02-introduction-to-linear-polynomials/Polynomials_JEE_Test_Set2.pdf",
+              "label": "JEE Set 2"
+            }
+          ],
+          "updated": "2026-11-15"
         },
         {
           "num": 3,
@@ -140,9 +162,31 @@ window.CATALOG = {
         {
           "num": 7,
           "title": "The Mathematics of Maybe: Introduction to Probability",
-          "notes": [],
-          "tests": [],
-          "updated": null
+          "notes": [
+            {
+              "href": "maths/07-the-mathematics-of-maybe/Probability_Revision_Notes.html",
+              "label": "Notes"
+            }
+          ],
+          "tests": [
+            {
+              "href": "maths/07-the-mathematics-of-maybe/Probability_CBSE_Test_Set1.pdf",
+              "label": "CBSE Set 1"
+            },
+            {
+              "href": "maths/07-the-mathematics-of-maybe/Probability_CBSE_Test_Set2.pdf",
+              "label": "CBSE Set 2"
+            },
+            {
+              "href": "maths/07-the-mathematics-of-maybe/Probability_JEE_Test_Set1.pdf",
+              "label": "JEE Set 1"
+            },
+            {
+              "href": "maths/07-the-mathematics-of-maybe/Probability_JEE_Test_Set2.pdf",
+              "label": "JEE Set 2"
+            }
+          ],
+          "updated": "2026-11-15"
         },
         {
           "num": 8,
@@ -175,9 +219,31 @@ window.CATALOG = {
         {
           "num": 12,
           "title": "Quadrilaterals",
-          "notes": [],
-          "tests": [],
-          "updated": null
+          "notes": [
+            {
+              "href": "maths/12-quadrilaterals/Quadrilaterals_Revision_Notes.html",
+              "label": "Notes"
+            }
+          ],
+          "tests": [
+            {
+              "href": "maths/12-quadrilaterals/Quadrilaterals_CBSE_Test_Set1.pdf",
+              "label": "CBSE Set 1"
+            },
+            {
+              "href": "maths/12-quadrilaterals/Quadrilaterals_CBSE_Test_Set2.pdf",
+              "label": "CBSE Set 2"
+            },
+            {
+              "href": "maths/12-quadrilaterals/Quadrilaterals_JEE_Test_Set1.pdf",
+              "label": "JEE Set 1"
+            },
+            {
+              "href": "maths/12-quadrilaterals/Quadrilaterals_JEE_Test_Set2.pdf",
+              "label": "JEE Set 2"
+            }
+          ],
+          "updated": "2026-11-15"
         },
         {
           "num": 13,

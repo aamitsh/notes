@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Introduction to Probability Revision Notes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,500;7..72,650&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root {
+  /* Layout: sticky left contents rail with progress, single reading column of section cards */
+  --ink: #16202e;
+  --muted: #566274;
+  --paper: #f4f6f8;
+  --card: #ffffff;
+  --line: #d9dfe6;
+  --accent: #1d5fa8;
+  --accent-soft: #e5eef8;
+  --formula: #fff7e6;
+  --formula-line: #e9c46a;
+  --good: #217a4b;
+  --good-soft: #e3f3ea;
+  --display: "Literata", Georgia, "Times New Roman", serif;
+  --body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --ink: #e6ebf1; --muted: #9aa7b8; --paper: #0f141b; --card: #171e28; --line: #2a3443;
+    --accent: #7db3ee; --accent-soft: #1b2b40; --formula: #2a2414; --formula-line: #8a6d24;
+    --good: #6fd29b; --good-soft: #17301f; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --ink: #e6ebf1; --muted: #9aa7b8; --paper: #0f141b; --card: #171e28; --line: #2a3443;
+  --accent: #7db3ee; --accent-soft: #1b2b40; --formula: #2a2414; --formula-line: #8a6d24;
+  --good: #6fd29b; --good-soft: #17301f; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body { background: var(--paper); color: var(--ink); font: 16px/1.65 var(--body); }
+a { color: var(--accent); }
+.wrap { display: grid; grid-template-columns: 250px minmax(0, 1fr); gap: 32px; max-width: 1120px; margin: 0 auto; padding: 28px 20px 60px; }
+aside { position: sticky; top: 20px; align-self: start; display: grid; gap: 14px; }
+aside h2 { font: 600 13px/1.3 var(--body); text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin: 0; }
+.progress { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 14px; display: grid; gap: 8px; }
+.bar { height: 8px; background: var(--line); border-radius: 4px; overflow: hidden; }
+.bar span { display: block; height: 100%; width: 0; background: var(--good); transition: width .3s; }
+.progress p { margin: 0; font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; }
+nav ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
+nav a { display: flex; gap: 8px; align-items: baseline; padding: 6px 8px; border-radius: 6px; text-decoration: none; color: var(--ink); font-size: 14px; line-height: 1.35; }
+nav a:hover, nav a:focus-visible { background: var(--accent-soft); outline: none; }
+nav a .tick { width: 14px; flex: none; color: var(--good); font-weight: 600; }
+main { display: grid; gap: 28px; min-width: 0; }
+header.top h1 { font: 650 clamp(28px, 4vw, 40px)/1.15 var(--display); margin: 0 0 8px; text-wrap: balance; }
+header.top p { margin: 0 0 6px; color: var(--muted); max-width: 68ch; }
+.howto { background: var(--accent-soft); border-radius: 10px; padding: 14px 18px; max-width: 70ch; }
+.howto ul { margin: 6px 0 0; padding-left: 20px; }
+section.unit { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 26px 28px; scroll-margin-top: 16px; }
+section.unit.done { border-color: var(--good); }
+section.unit > h2 { font: 650 24px/1.25 var(--display); margin: 0 0 12px; text-wrap: balance; display: flex; gap: 12px; align-items: baseline; }
+section.unit > h2 .num { font: 500 15px var(--mono); color: var(--accent); }
+h3 { font: 600 17px/1.3 var(--body); margin: 22px 0 8px; }
+p, li { max-width: 72ch; }
+ul, ol { padding-left: 22px; }
+li { margin: 4px 0; }
+.formula { background: var(--formula); border-left: 4px solid var(--formula-line); padding: 10px 16px; margin: 14px 0; font: 500 18px/1.5 var(--mono); border-radius: 0 8px 8px 0; overflow-x: auto; }
+.formula small { display: block; font: 400 13px var(--body); color: var(--muted); }
+.example { border: 1px dashed var(--line); border-radius: 8px; padding: 10px 16px; margin: 14px 0; }
+.example strong:first-child { color: var(--accent); }
+.tablewrap { overflow-x: auto; margin: 12px 0; }
+table { border-collapse: collapse; width: 100%; font-size: 15px; }
+th, td { border-bottom: 1px solid var(--line); padding: 8px 10px; text-align: left; vertical-align: top; }
+th { font-weight: 600; background: var(--accent-soft); }
+figure { margin: 16px 0; }
+figure svg { width: 100%; max-width: 560px; height: auto; display: block; }
+figcaption { font-size: 13px; color: var(--muted); }
+svg .stroke { stroke: var(--ink); }
+svg .fillink { fill: var(--ink); }
+svg .acc { stroke: var(--accent); fill: none; }
+svg .accfill { fill: var(--accent); }
+svg text { fill: var(--ink); font: 13px var(--body); }
+.check { margin-top: 22px; border-top: 2px solid var(--accent); padding-top: 14px; }
+.check h3 { margin-top: 0; color: var(--accent); }
+.check > ol { display: grid; gap: 12px; padding-left: 24px; }
+.check li { max-width: 74ch; }
+.star { color: #c48a12; font-weight: 600; }
+details { margin-top: 6px; }
+summary { cursor: pointer; color: var(--accent); font-size: 14px; font-weight: 500; width: fit-content; }
+summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+details .ans { background: var(--good-soft); border-radius: 8px; padding: 8px 12px; margin-top: 6px; font-size: 15px; }
+.done-row { margin-top: 18px; display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+.done-btn { font: 500 15px var(--body); padding: 9px 16px; border-radius: 8px; border: 1px solid var(--good); background: transparent; color: var(--good); cursor: pointer; }
+.done-btn:hover { background: var(--good-soft); }
+.done-btn:focus-visible { outline: 2px solid var(--good); outline-offset: 2px; }
+.done-btn[aria-pressed="true"] { background: var(--good); color: var(--card); }
+.done-row span { font-size: 14px; color: var(--muted); }
+.traps li { margin: 8px 0; }
+@media (max-width: 860px) {
+  .wrap { grid-template-columns: 1fr; }
+  aside { position: static; }
+  section.unit { padding: 20px 18px; }
+}
+@media (prefers-reduced-motion: reduce) { .bar span { transition: none; } }
+
+sup { font-size: .72em; line-height: 0; }
+.formula sup { font-size: .7em; }
+</style>
+</head>
+<body>
+<div class="wrap">
+<aside>
+  <div class="progress">
+    <h2>Your progress</h2>
+    <div class="bar"><span id="bar"></span></div>
+    <p id="count">0 sections complete</p>
+  </div>
+  <nav aria-label="Sections">
+    <h2>Sections</h2>
+    <ol id="toc"></ol>
+  </nav>
+</aside>
+<main>
+<header class="top">
+  <h1>Introduction to Probability</h1>
+  <p>Class 9 Mathematics (Ganita Manjari), Chapter 7: The Mathematics of Maybe. Revision notes covering the whole chapter: the probability scale, experimental and theoretical probability, sample spaces, events and tree diagrams.</p>
+  <div class="howto">
+    <strong>How to use these notes</strong>
+    <ul>
+      <li>Read a section, then answer its quick-check questions on paper before opening the answers.</li>
+      <li>Questions marked <span class="star">★</span> are at the level of the JEE-style tests.</li>
+      <li>Press <em>Mark section complete</em> only when you got every question right. Then move on.</li>
+    </ul>
+  </div>
+</header>
+
+<section class="unit" id="scale" data-title="Randomness and the probability scale">
+<h2><span class="num">01</span>Randomness and the probability scale</h2>
+
+<p><strong>Probability</strong> measures how likely an event is. It is a measurement, like length or area, but of likelihood.</p>
+<ul>
+  <li><strong>Random experiment:</strong> an action you can repeat, such as tossing a coin or rolling a die, where you know all the possible results but cannot tell in advance which one will occur.</li>
+  <li><strong>Subjective probability</strong> is a personal judgement ("it looks like rain"). This chapter is about measuring probability <strong>objectively</strong>, from data or from reasoning.</li>
+  <li>Probability is measured on a scale from <strong>0 to 1</strong>. It can also be written as a percentage: 0.75 means a 75% chance.</li>
+</ul>
+<div class="tablewrap"><table>
+<thead><tr><th>Probability</th><th>Description</th><th>Example</th></tr></thead>
+<tbody>
+<tr><td>0</td><td>Impossible</td><td>Getting a number greater than 6 on a die</td></tr>
+<tr><td>Between 0 and ½</td><td>Less likely</td><td>Rolling a 3 on a die</td></tr>
+<tr><td>½</td><td>Even chance (equally likely)</td><td>Getting heads when a coin is tossed</td></tr>
+<tr><td>Between ½ and 1</td><td>More likely</td><td>Drawing a card numbered 2 to 10 from a deck of 52 (36 such cards)</td></tr>
+<tr><td>1</td><td>Certain</td><td>Picking a red sweet from a bag of only red sweets</td></tr>
+</tbody></table></div>
+<div class="formula">0 ≤ P(E) ≤ 1 for every event E</div>
+
+<div class="check">
+<h3>Quick check</h3>
+<ol>
+<li>Describe each event as impossible, less likely, even chance, more likely or certain: (i) Monday comes after Sunday, (ii) rolling a 1 on a die, (iii) getting tails on a coin, (iv) getting a number less than 6 on a die, (v) rolling a 7 on a die.
+<details><summary>Show answer</summary><div class="ans">(i) certain (ii) less likely (iii) even chance (iv) more likely, 5/6 (v) impossible.</div></details></li>
+<li>Can 1.5 or –0.2 be the probability of an event?
+<details><summary>Show answer</summary><div class="ans">No. A probability always lies from 0 to 1.</div></details></li>
+<li>The probability that a team wins is 0.75. What does this mean?
+<details><summary>Show answer</summary><div class="ans">There is a 75% chance of winning: it is more likely than not, but not certain.</div></details></li>
+<li>Why is tossing a coin a fair way to decide which team bats first?
+<details><summary>Show answer</summary><div class="ans">Heads and tails are equally likely (½ each) and nobody can predict or control the result, so both teams have the same chance.</div></details></li>
+</ol>
+<div class="done-row"><button class="done-btn" type="button" aria-pressed="false">Mark section complete</button><span>Got all 4 right?</span></div>
+</div>
+</section>
+<section class="unit" id="experimental" data-title="Experimental probability and data">
+<h2><span class="num">02</span>Experimental probability and data</h2>
+
+<p>Experimental probability is found from evidence: by repeating an experiment many times, or from recorded data. Each repetition is called a <strong>trial</strong>.</p>
+<div class="formula">Experimental probability = (number of times the event occurred) ÷ (total number of trials)<small>this fraction is also called the relative frequency of the event</small></div>
+<div class="example"><strong>Example.</strong> A die is rolled 50 times and lands on 4 exactly 8 times. The experimental probability (relative frequency) of a 4 is 8/50 = 0.16, or 16%.</div>
+<h3>Using statistical data and samples</h3>
+<ul>
+  <li><strong>Population:</strong> the whole group we want to know about. <strong>Sample:</strong> the smaller group we actually collect data from.</li>
+  <li>The probability found from the sample is used to <strong>estimate</strong> numbers for the population:<br>estimate = probability from the sample × size of the population.</li>
+  <li>The estimate is more reliable when the sample is <strong>larger</strong> and more <strong>representative</strong> (for example, students from different classes, not just one).</li>
+</ul>
+<div class="example"><strong>Example.</strong> Of 50 students asked, 20 like mango best. P(mango) = 20/50 = 0.4. For a school of 1500 students, the estimate is 0.4 × 1500 = 600 students.</div>
+
+<div class="check">
+<h3>Quick check</h3>
+<ol>
+<li>A coin is tossed 200 times and shows heads 92 times. Find the experimental probability of tails.
+<details><summary>Show answer</summary><div class="ans">108/200 = 0.54.</div></details></li>
+<li>In a sample of 40 students, 9 prefer the Sports Club. The school has 800 students. Estimate how many prefer the Sports Club.
+<details><summary>Show answer</summary><div class="ans">9/40 × 800 = 180 students.</div></details></li>
+<li>A tyre company records 1000 cases: 20 tyres lasted less than 4000 km, 210 lasted 4001 to 9000 km, 325 lasted 9001 to 14000 km and 445 lasted more than 14000 km. Find the probability that a tyre lasts more than 14000 km, and the probability that it lasts between 4000 and 14000 km.
+<details><summary>Show answer</summary><div class="ans">445/1000 = 0.445; (210 + 325)/1000 = 0.535.</div></details></li>
+<li>A paper cup is tossed 100 times and lands on its side 72 times. What is the experimental probability that it does not land on its side?
+<details><summary>Show answer</summary><div class="ans">28/100 = 0.28.</div></details></li>
+<li><span class="star">★</span> A student estimates the favourite fruit of the whole school by asking only her own class. Give two reasons why the estimate may be unreliable.
+<details><summary>Show answer</summary><div class="ans">The sample is small, and it is not representative: one class may not have the same tastes as other classes or age groups.</div></details></li>
+</ol>
+<div class="done-row"><button class="done-btn" type="button" aria-pressed="false">Mark section complete</button><span>Got all 5 right?</span></div>
+</div>
+</section>
+<section class="unit" id="theoretical" data-title="Theoretical probability">
+<h2><span class="num">03</span>Theoretical probability</h2>
+
+<p>Theoretical probability uses reasoning instead of an experiment. It assumes that all the possible outcomes are <strong>equally likely</strong> (a fair situation).</p>
+<div class="formula">P(E) = (number of favourable outcomes) ÷ (number of possible outcomes)</div>
+<div class="example"><strong>Examples.</strong> Rolling a 4 on a die: 1/6 ≈ 0.167. Picking the letter B from the word PROBABILITY: there are 2 Bs among 11 letters, so 2/11 ≈ 0.182.</div>
+<ul>
+  <li><strong>Fair or unbiased:</strong> a fair coin is symmetrical, so there is no reason for one side to come up more often than the other.</li>
+  <li><strong>Check for equally likely outcomes.</strong> In a bag of 3 red and 7 blue marbles, "red" and "blue" are not equally likely, but each of the 10 marbles is. So P(red) = 3/10.</li>
+  <li><strong>"Not" events:</strong> count the outcomes that are left. With 3 red, 2 blue and 1 green ball, P(not red) = 3/6 = ½. Notice that P(red) + P(not red) = 1.</li>
+</ul>
+<div class="tablewrap"><table>
+<thead><tr><th></th><th>Experimental probability</th><th>Theoretical probability</th></tr></thead>
+<tbody>
+<tr><td>Based on</td><td>Actual trials or collected data</td><td>Reasoning about equally likely outcomes</td></tr>
+<tr><td>Needs an experiment?</td><td>Yes</td><td>No</td></tr>
+<tr><td>Can it change?</td><td>Yes, from one set of trials to another</td><td>No, it is fixed for a given situation</td></tr>
+</tbody></table></div>
+<p><strong>Law of Large Numbers:</strong> as the number of trials increases, the experimental probability tends to get closer to the theoretical probability. With few trials the two can be quite different.</p>
+<p><strong>Gambler's Fallacy:</strong> the mistaken belief that after a run of one result, the opposite result is "due". A coin or a die has no memory. Each toss or roll is <strong>independent</strong>: after six heads in a row, the probability of heads on the next toss is still ½.</p>
+
+<div class="check">
+<h3>Quick check</h3>
+<ol>
+<li>What is the probability of getting an even number when a fair die is rolled?
+<details><summary>Show answer</summary><div class="ans">3/6 = ½.</div></details></li>
+<li>A letter is picked at random from the word PROBABILITY. Find the probability that it is I.
+<details><summary>Show answer</summary><div class="ans">2/11.</div></details></li>
+<li>Ten cards numbered 1 to 10 are in a box. One is drawn at random. Find the probability that it is a prime number.
+<details><summary>Show answer</summary><div class="ans">2, 3, 5, 7: 4/10 = 2/5.</div></details></li>
+<li>The letters of the word PEACE are on cards. Find the probability that a card drawn at random is not an E.
+<details><summary>Show answer</summary><div class="ans">3/5.</div></details></li>
+<li>A die has shown 6 three times in a row. What is the probability of a 6 on the next roll?
+<details><summary>Show answer</summary><div class="ans">Still 1/6. Each roll is independent.</div></details></li>
+<li><span class="star">★</span> A die is rolled 12 times and shows a 3 three times. Compare the experimental and theoretical probabilities of a 3. What would you expect after 6000 rolls?
+<details><summary>Show answer</summary><div class="ans">Experimental: 3/12 = ¼. Theoretical: 1/6. They differ because 12 trials is very few. After 6000 rolls the experimental value should be close to 1/6 (about 1000 threes).</div></details></li>
+<li><span class="star">★</span> A number is chosen at random from 1 to 50. Find the probability that it is a multiple of 3 or of 5.
+<details><summary>Show answer</summary><div class="ans">Multiples of 3: 16. Multiples of 5: 10. Multiples of both (15, 30, 45) are counted twice: 16 + 10 – 3 = 23. P = 23/50.</div></details></li>
+</ol>
+<div class="done-row"><button class="done-btn" type="button" aria-pressed="false">Mark section complete</button><span>Got all 7 right?</span></div>
+</div>
+</section>
+<section class="unit" id="samplespace" data-title="Sample space and events">
+<h2><span class="num">04</span>Sample space and events</h2>
+
+<ul>
+  <li><strong>Outcome:</strong> one possible result of an experiment.</li>
+  <li><strong>Sample space S:</strong> the list of all possible outcomes, written in curly brackets. Every outcome must be included, and none may be listed twice.</li>
+  <li><strong>Sample size n(S):</strong> the number of elements in the sample space.</li>
+  <li><strong>Event:</strong> any one outcome or group of outcomes. An event is a subset of the sample space.</li>
+</ul>
+<div class="tablewrap"><table>
+<thead><tr><th>Experiment</th><th>Sample space S</th><th>n(S)</th></tr></thead>
+<tbody>
+<tr><td>Tossing a coin</td><td>{H, T}</td><td>2</td></tr>
+<tr><td>Rolling a die</td><td>{1, 2, 3, 4, 5, 6}</td><td>6</td></tr>
+<tr><td>Tossing two coins</td><td>{HH, HT, TH, TT}</td><td>4</td></tr>
+<tr><td>Tossing three coins</td><td>{HHH, HHT, HTH, THH, HTT, THT, TTH, TTT}</td><td>8</td></tr>
+<tr><td>A coin and a die together</td><td>{H1, H2, H3, H4, H5, H6, T1, T2, T3, T4, T5, T6}</td><td>12</td></tr>
+<tr><td>Result of a match</td><td>{Win, Lose, Draw}</td><td>3</td></tr>
+</tbody></table></div>
+<div class="example"><strong>Events.</strong> For two coins, the event "at least one head" is E = {HH, HT, TH}, so P(E) = 3/4. For a die, the event "greater than 4" is E = {5, 6}, so P(E) = 2/6 = 1/3.</div>
+<ul>
+  <li><strong>HT and TH are different outcomes.</strong> That is why "one head and one tail" has probability 2/4 = ½, not 1/3.</li>
+  <li><strong>Choose a sample space that suits the question.</strong> {Rain, No Rain} is enough to ask "will it rain?", but to ask about the amount of rain you need {No Rain, Drizzle, Light Rain, Heavy Rain}.</li>
+  <li><strong>Outcomes in a sample space need not be equally likely.</strong> If three coins are tossed and the number of heads is recorded, S = {0, 1, 2, 3}, but 1 and 2 are more likely than 0 and 3.</li>
+</ul>
+
+<div class="check">
+<h3>Quick check</h3>
+<ol>
+<li>Write the sample space for rolling a die and tossing a coin together. What is n(S)?
+<details><summary>Show answer</summary><div class="ans">{H1, H2, H3, H4, H5, H6, T1, T2, T3, T4, T5, T6}; n(S) = 12.</div></details></li>
+<li>A fair has 3 snacks (Samosa, Pakora, Bhaji) and 2 drinks (Chai, Lassi). How many snack-and-drink combinations are there? List the event 'Samosa is chosen'.
+<details><summary>Show answer</summary><div class="ans">3 × 2 = 6 combinations. Event: {Samosa–Chai, Samosa–Lassi}.</div></details></li>
+<li>Three coins are tossed. Find the probability of getting exactly two heads.
+<details><summary>Show answer</summary><div class="ans">HHT, HTH, THH: 3/8.</div></details></li>
+<li>Three coins are tossed and the number of heads is recorded. Which list is the sample space: {1, 2, 3}, {0, 1, 2}, {0, 1, 2, 3, 4} or {0, 1, 2, 3}?
+<details><summary>Show answer</summary><div class="ans">{0, 1, 2, 3}. The first two leave out possible results and the third includes 4, which cannot happen.</div></details></li>
+<li><span class="star">★</span> For the experiment in the previous question, find the probability of each outcome in {0, 1, 2, 3}.
+<details><summary>Show answer</summary><div class="ans">P(0) = 1/8, P(1) = 3/8, P(2) = 3/8, P(3) = 1/8.</div></details></li>
+</ol>
+<div class="done-row"><button class="done-btn" type="button" aria-pressed="false">Mark section complete</button><span>Got all 5 right?</span></div>
+</div>
+</section>
+<section class="unit" id="trees" data-title="Tree diagrams and two-step experiments">
+<h2><span class="num">05</span>Tree diagrams and two-step experiments</h2>
+
+<p>A <strong>multi-step experiment</strong> is a series of trials, such as tossing a coin twice. A <strong>tree diagram</strong> lists all its outcomes: each branch is one possible result of a step, and each path from start to end is one complete outcome.</p>
+<figure>
+<svg viewBox="0 0 460 220" role="img" aria-label="Tree diagram for tossing a coin twice. The four paths give the outcomes HH, HT, TH and TT, each with probability one quarter.">
+<g class="acc" stroke-width="1.8">
+<line x1="40" y1="110" x2="150" y2="58"/><line x1="40" y1="110" x2="150" y2="162"/>
+<line x1="176" y1="55" x2="290" y2="28"/><line x1="176" y1="55" x2="290" y2="86"/>
+<line x1="176" y1="165" x2="290" y2="134"/><line x1="176" y1="165" x2="290" y2="192"/>
+</g>
+<text x="156" y="60">H</text><text x="156" y="170">T</text>
+<text x="296" y="32">H</text><text x="296" y="90">T</text><text x="296" y="138">H</text><text x="296" y="196">T</text>
+<text x="82" y="72">½</text><text x="82" y="156">½</text>
+<text x="226" y="32">½</text><text x="226" y="86">½</text><text x="226" y="140">½</text><text x="226" y="194">½</text>
+<text x="340" y="32">HH: ½ × ½ = ¼</text><text x="340" y="90">HT: ¼</text><text x="340" y="138">TH: ¼</text><text x="340" y="196">TT: ¼</text>
+<text x="40" y="20">1st toss</text><text x="200" y="14">2nd toss</text>
+</svg>
+<figcaption>Tossing a fair coin twice: S = {HH, HT, TH, TT}.</figcaption>
+</figure>
+<ul>
+  <li><strong>Counting outcomes:</strong> multiply the number of branches at each step. Two coins: 2 × 2 = 4. Three coins: 2 × 2 × 2 = 8. Two dice: 6 × 6 = 36.</li>
+  <li><strong>Probability of a path:</strong> multiply the probabilities along its branches.</li>
+  <li><strong>Probability of an event:</strong> add the probabilities of all the paths that make up the event.</li>
+</ul>
+<h3>With and without replacement</h3>
+<p>A basket has 4 red and 5 blue balls. Two balls are drawn one after the other.</p>
+<div class="tablewrap"><table>
+<thead><tr><th>Event</th><th>First ball put back</th><th>First ball laid aside</th></tr></thead>
+<tbody>
+<tr><td>Red, then blue</td><td>4/9 × 5/9 = 20/81</td><td>4/9 × 5/8 = 5/18</td></tr>
+<tr><td>Two blue balls</td><td>5/9 × 5/9 = 25/81</td><td>5/9 × 4/8 = 5/18</td></tr>
+</tbody></table></div>
+<p>Without replacement, the second step has one ball fewer, so its probabilities change.</p>
+<h3>Two dice</h3>
+<div class="tablewrap"><table>
+<thead><tr><th>Sum</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>11</th><th>12</th></tr></thead>
+<tbody><tr><td>Number of ways (out of 36)</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>5</td><td>4</td><td>3</td><td>2</td><td>1</td></tr></tbody>
+</table></div>
+<h3>Probability from areas</h3>
+<p>If a point is equally likely to land anywhere in a region, P = (favourable area) ÷ (total area). For a circle of diameter 1 m inside a 3 m by 2 m rectangle: (π × 0.5<sup>2</sup>) ÷ 6 = π/24 ≈ 0.13.</p>
+
+<div class="check">
+<h3>Quick check</h3>
+<ol>
+<li>A fair coin is tossed twice. Find the probability of getting one head and one tail.
+<details><summary>Show answer</summary><div class="ans">HT and TH: 2/4 = ½.</div></details></li>
+<li>Two dice are rolled. Find the probability that the sum is 9.
+<details><summary>Show answer</summary><div class="ans">(3,6), (4,5), (5,4), (6,3): 4/36 = 1/9.</div></details></li>
+<li>Basket A has one apple and two oranges; basket B has one banana and one mango. One fruit is picked at random from each. Find the probability of picking an apple and a banana.
+<details><summary>Show answer</summary><div class="ans">1/3 × 1/2 = 1/6.</div></details></li>
+<li>A box has 4 balls numbered 1 to 4. Two balls are drawn. How many outcomes are there (i) with replacement, (ii) without replacement?
+<details><summary>Show answer</summary><div class="ans">(i) 4 × 4 = 16 &nbsp; (ii) 4 × 3 = 12.</div></details></li>
+<li><span class="star">★</span> A box has 3 red, 4 black and 2 green pens. You pick a pen and put it back; then your friend picks one. Find the probability that both pens are the same colour.
+<details><summary>Show answer</summary><div class="ans">(3/9)<sup>2</sup> + (4/9)<sup>2</sup> + (2/9)<sup>2</sup> = (9 + 16 + 4)/81 = 29/81.</div></details></li>
+<li><span class="star">★</span> A basket has 4 red and 5 blue balls. Two balls are drawn without replacement. Find the probability that they are of different colours.
+<details><summary>Show answer</summary><div class="ans">Red then blue: 4/9 × 5/8 = 5/18. Blue then red: 5/9 × 4/8 = 5/18. Total 5/9.</div></details></li>
+<li><span class="star">★</span> Two dice are rolled. Find the probability that the sum is a prime number greater than 5.
+<details><summary>Show answer</summary><div class="ans">Sums 7 and 11: (6 + 2)/36 = 2/9.</div></details></li>
+</ol>
+<div class="done-row"><button class="done-btn" type="button" aria-pressed="false">Mark section complete</button><span>Got all 7 right?</span></div>
+</div>
+</section>
+<section class="unit" id="traps" data-title="Common mistakes">
+<h2><span class="num">✓</span>Common mistakes to avoid</h2>
+<ul class="traps">
+  <li><strong>A probability is never negative and never more than 1.</strong> If you get such an answer, recheck the counting.</li>
+  <li><strong>Use the total number of outcomes, not the number of types.</strong> With 3 red and 5 blue balls, P(red) = 3/8, not ½.</li>
+  <li><strong>HT and TH are different outcomes.</strong> So are (2, 5) and (5, 2) on two dice.</li>
+  <li><strong>'At least one' includes 'more than one'.</strong> At least one head with two coins means HH, HT or TH.</li>
+  <li><strong>'Between 2 and 6'</strong> means 3, 4 and 5 only.</li>
+  <li><strong>Experimental probability depends on the data</strong>; theoretical probability does not. Say which one a question is asking for.</li>
+  <li><strong>An estimate from a sample is only an estimate.</strong> It is not a certain value for the whole population.</li>
+  <li><strong>Gambler's Fallacy:</strong> past tosses or rolls do not change the probability of the next one.</li>
+  <li><strong>Without replacement, the totals change</strong> for the second draw: one item fewer.</li>
+  <li><strong>Count repeated letters.</strong> In PROBABILITY there are 11 letters, with B and I each appearing twice.</li>
+</ul>
+</section>
+</main>
+</div>
+<script>
+(function () {
+  var KEY = "prob-notes-done";
+  var sections = Array.prototype.slice.call(document.querySelectorAll("section.unit[data-title]")).filter(function (s) { return s.querySelector(".done-btn"); });
+  var toc = document.getElementById("toc");
+  var done = {};
+  try { done = JSON.parse(localStorage.getItem(KEY) || "{}") || {}; } catch (e) { done = {}; }
+  var links = {};
+  document.querySelectorAll("section.unit[data-title]").forEach(function (s, i) {
+    var li = document.createElement("li");
+    var a = document.createElement("a");
+    a.href = "#" + s.id;
+    var t = document.createElement("span"); t.className = "tick"; t.setAttribute("aria-hidden", "true");
+    var label = document.createElement("span"); label.textContent = s.getAttribute("data-title");
+    a.appendChild(t); a.appendChild(label);
+    li.appendChild(a); toc.appendChild(li);
+    links[s.id] = t;
+  });
+  function save() { try { localStorage.setItem(KEY, JSON.stringify(done)); } catch (e) {} }
+  function render() {
+    var n = 0;
+    sections.forEach(function (s) {
+      var on = !!done[s.id];
+      if (on) n++;
+      s.classList.toggle("done", on);
+      var b = s.querySelector(".done-btn");
+      b.setAttribute("aria-pressed", on ? "true" : "false");
+      b.textContent = on ? "Section complete ✓ (click to undo)" : "Mark section complete";
+      if (links[s.id]) links[s.id].textContent = on ? "✓" : "";
+    });
+    document.getElementById("bar").style.width = (n / sections.length * 100) + "%";
+    document.getElementById("count").textContent = n + " of " + sections.length + " sections complete";
+  }
+  sections.forEach(function (s, i) {
+    s.querySelector(".done-btn").addEventListener("click", function () {
+      done[s.id] = !done[s.id];
+      save(); render();
+      if (done[s.id] && sections[i + 1]) {
+        sections[i + 1].scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+      }
+    });
+  });
+  render();
+})();
+</script>
+</body>
+</html>

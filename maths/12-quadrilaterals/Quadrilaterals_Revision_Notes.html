@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quadrilaterals Revision Notes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,500;7..72,650&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root {
+  /* Layout: sticky left contents rail with progress, single reading column of section cards */
+  --ink: #16202e;
+  --muted: #566274;
+  --paper: #f4f6f8;
+  --card: #ffffff;
+  --line: #d9dfe6;
+  --accent: #1d5fa8;
+  --accent-soft: #e5eef8;
+  --formula: #fff7e6;
+  --formula-line: #e9c46a;
+  --good: #217a4b;
+  --good-soft: #e3f3ea;
+  --display: "Literata", Georgia, "Times New Roman", serif;
+  --body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --ink: #e6ebf1; --muted: #9aa7b8; --paper: #0f141b; --card: #171e28; --line: #2a3443;
+    --accent: #7db3ee; --accent-soft: #1b2b40; --formula: #2a2414; --formula-line: #8a6d24;
+    --good: #6fd29b; --good-soft: #17301f; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --ink: #e6ebf1; --muted: #9aa7b8; --paper: #0f141b; --card: #171e28; --line: #2a3443;
+  --accent: #7db3ee; --accent-soft: #1b2b40; --formula: #2a2414; --formula-line: #8a6d24;
+  --good: #6fd29b; --good-soft: #17301f; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body { background: var(--paper); color: var(--ink); font: 16px/1.65 var(--body); }
+a { color: var(--accent); }
+.wrap { display: grid; grid-template-columns: 250px minmax(0, 1fr); gap: 32px; max-width: 1120px; margin: 0 auto; padding: 28px 20px 60px; }
+aside { position: sticky; top: 20px; align-self: start; display: grid; gap: 14px; }
+aside h2 { font: 600 13px/1.3 var(--body); text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin: 0; }
+.progress { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 14px; display: grid; gap: 8px; }
+.bar { height: 8px; background: var(--line); border-radius: 4px; overflow: hidden; }
+.bar span { display: block; height: 100%; width: 0; background: var(--good); transition: width .3s; }
+.progress p { margin: 0; font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; }
+nav ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
+nav a { display: flex; gap: 8px; align-items: baseline; padding: 6px 8px; border-radius: 6px; text-decoration: none; color: var(--ink); font-size: 14px; line-height: 1.35; }
+nav a:hover, nav a:focus-visible { background: var(--accent-soft); outline: none; }
+nav a .tick { width: 14px; flex: none; color: var(--good); font-weight: 600; }
+main { display: grid; gap: 28px; min-width: 0; }
+header.top h1 { font: 650 clamp(28px, 4vw, 40px)/1.15 var(--display); margin: 0 0 8px; text-wrap: balance; }
+header.top p { margin: 0 0 6px; color: var(--muted); max-width: 68ch; }
+.howto { background: var(--accent-soft); border-radius: 10px; padding: 14px 18px; max-width: 70ch; }
+.howto ul { margin: 6px 0 0; padding-left: 20px; }
+section.unit { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 26px 28px; scroll-margin-top: 16px; }
+section.unit.done { border-color: var(--good); }
+section.unit > h2 { font: 650 24px/1.25 var(--display); margin: 0 0 12px; text-wrap: balance; display: flex; gap: 12px; align-items: baseline; }
+section.unit > h2 .num { font: 500 15px var(--mono); color: var(--accent); }
+h3 { font: 600 17px/1.3 var(--body); margin: 22px 0 8px; }
+p, li { max-width: 72ch; }
+ul, ol { padding-left: 22px; }
+li { margin: 4px 0; }
+.formula { background: var(--formula); border-left: 4px solid var(--formula-line); padding: 10px 16px; margin: 14px 0; font: 500 18px/1.5 var(--mono); border-radius: 0 8px 8px 0; overflow-x: auto; }
+.formula small { display: block; font: 400 13px var(--body); color: var(--muted); }
+.example { border: 1px dashed var(--line); border-radius: 8px; padding: 10px 16px; margin: 14px 0; }
+.example strong:first-child { color: var(--accent); }
+.tablewrap { overflow-x: auto; margin: 12px 0; }
+table { border-collapse: collapse; width: 100%; font-size: 15px; }
+th, td { border-bottom: 1px solid var(--line); padding: 8px 10px; text-align: left; vertical-align: top; }
+th { font-weight: 600; background: var(--accent-soft); }
+figure { margin: 16px 0; }
+figure svg { width: 100%; max-width: 560px; height: auto; display: block; }
+figcaption { font-size: 13px; color: var(--muted); }
+svg .stroke { stroke: var(--ink); }
+svg .fillink { fill: var(--ink); }
+svg .acc { stroke: var(--accent); fill: none; }
+svg .accfill { fill: var(--accent); }
+svg text { fill: var(--ink); font: 13px var(--body); }
+.check { margin-top: 22px; border-top: 2px solid var(--accent); padding-top: 14px; }
+.check h3 { margin-top: 0; color: var(--accent); }
+.check > ol { display: grid; gap: 12px; padding-left: 24px; }
+.check li { max-width: 74ch; }
+.star { color: #c48a12; font-weight: 600; }
+details { margin-top: 6px; }
+summary { cursor: pointer; color: var(--accent); font-size: 14px; font-weight: 500; width: fit-content; }
+summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+details .ans { background: var(--good-soft); border-radius: 8px; padding: 8px 12px; margin-top: 6px; font-size: 15px; }
+.done-row { margin-top: 18px; display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+.done-btn { font: 500 15px var(--body); padding: 9px 16px; border-radius: 8px; border: 1px solid var(--good); background: transparent; color: var(--good); cursor: pointer; }
+.done-btn:hover { background: var(--good-soft); }
+.done-btn:focus-visible { outline: 2px solid var(--good); outline-offset: 2px; }
+.done-btn[aria-pressed="true"] { background: var(--good); color: var(--card); }
+.done-row span { font-size: 14px; color: var(--muted); }
+.traps li { margin: 8px 0; }
+@media (max-width: 860px) {
+  .wrap { grid-template-columns: 1fr; }
+  aside { position: static; }
+  section.unit { padding: 20px 18px; }
+}
+@media (prefers-reduced-motion: reduce) { .bar span { transition: none; } }
+
+sup { font-size: .72em; line-height: 0; }
+.formula sup { font-size: .7em; }
+</style>
+</head>
+<body>
+<div class="wrap">
+<aside>
+  <div class="progress">
+    <h2>Your progress</h2>
+    <div class="bar"><span id="bar"></span></div>
+    <p id="count">0 sections complete</p>
+  </div>
+  <nav aria-label="Sections">
+    <h2>Sections</h2>
+    <ol id="toc"></ol>
+  </nav>
+</aside>
+<main>
+<header class="top">
+  <h1>Quadrilaterals</h1>
+  <p>Class 9 Mathematics, Chapter 8. Revision notes covering the whole chapter: properties of parallelograms, the rectangle, rhombus and square, and the Mid-point Theorem.</p>
+  <div class="howto">
+    <strong>How to use these notes</strong>
+    <ul>
+      <li>Read a section, then answer its quick-check questions on paper before opening the answers.</li>
+      <li>Questions marked <span class="star">★</span> are at the level of the JEE-style tests.</li>
+      <li>Press <em>Mark section complete</em> only when you got every question right. Then move on.</li>
+    </ul>
+  </div>
+</header>
+
+<section class="unit" id="parallelogram" data-title="Parallelograms and their properties">
+<h2><span class="num">01</span>Parallelograms and their properties</h2>
+
+<p>A <strong>quadrilateral</strong> has four sides, four angles and four vertices; its angles add up to <strong>360°</strong>. A <strong>parallelogram</strong> is a quadrilateral in which both pairs of opposite sides are parallel.</p>
+<figure>
+<svg viewBox="0 0 440 220" role="img" aria-label="Parallelogram ABCD with diagonals AC and BD meeting at O.">
+<polygon points="60,180 300,180 380,50 140,50" fill="var(--accent-soft)" class="stroke" stroke-width="2"/>
+<line x1="60" y1="180" x2="380" y2="50" class="acc" stroke-width="1.5"/>
+<line x1="300" y1="180" x2="140" y2="50" class="acc" stroke-width="1.5"/>
+<text x="42" y="198">A</text><text x="304" y="198">B</text><text x="386" y="46">C</text><text x="124" y="46">D</text><text x="214" y="104">O</text>
+</svg>
+<figcaption>AB ∥ DC and AD ∥ BC. The diagonals AC and BD meet at O.</figcaption>
+</figure>
+<p><strong>Theorem 8.1.</strong> A diagonal of a parallelogram divides it into two congruent triangles.<br>
+<em>Proof idea:</em> in △ABC and △CDA, ∠BCA = ∠DAC and ∠BAC = ∠DCA (alternate angles), and AC is common. So △ABC ≅ △CDA by ASA.</p>
+<div class="tablewrap"><table>
+<thead><tr><th>Property of a parallelogram</th><th>Converse (a test for a parallelogram)</th></tr></thead>
+<tbody>
+<tr><td>Opposite sides are equal (Theorem 8.2)</td><td>If each pair of opposite sides of a quadrilateral is equal, it is a parallelogram (8.3)</td></tr>
+<tr><td>Opposite angles are equal (8.4)</td><td>If each pair of opposite angles is equal, it is a parallelogram (8.5)</td></tr>
+<tr><td>The diagonals bisect each other (8.6)</td><td>If the diagonals bisect each other, it is a parallelogram (8.7)</td></tr>
+</tbody></table></div>
+<ul>
+  <li><strong>Adjacent angles are supplementary:</strong> ∠A + ∠B = 180°, because AD ∥ BC and AB is a transversal.</li>
+  <li><strong>Diagonals bisect each other</strong> means OA = OC and OB = OD. It does not mean the diagonals are equal.</li>
+  <li>One pair of opposite sides that is <strong>both equal and parallel</strong> is also enough to make a parallelogram. This is used in the proof of the Mid-point Theorem.</li>
+</ul>
+
+<div class="check">
+<h3>Quick check</h3>
+<ol>
+<li>In a parallelogram ABCD, ∠A = 65°. Find the other three angles.
+<details><summary>Show answer</summary><div class="ans">∠C = 65°, ∠B = ∠D = 115°.</div></details></li>
+<li>The diagonals of a parallelogram meet at O, with OA = 4 cm and OB = 3 cm. Find AC and BD.
+<details><summary>Show answer</summary><div class="ans">AC = 8 cm, BD = 6 cm.</div></details></li>
+<li>In a parallelogram, ∠A = (2x + 15)° and ∠B = (3x – 10)°. Find the angles.
+<details><summary>Show answer</summary><div class="ans">Adjacent angles: 5x + 5 = 180, so x = 35. ∠A = 85°, ∠B = 95°.</div></details></li>
+<li>A quadrilateral has AB = CD = 5 cm and BC = DA = 7 cm. Is it a parallelogram?
+<details><summary>Show answer</summary><div class="ans">Yes, by Theorem 8.3 (each pair of opposite sides is equal).</div></details></li>
+<li><span class="star">★</span> In a parallelogram ABCD with AB = 9 cm and AD = 5 cm, the bisector of ∠A meets DC at E. Find EC.
+<details><summary>Show answer</summary><div class="ans">∠DEA = ∠EAB (alternate angles) = ∠DAE, so DE = AD = 5 cm. EC = 9 – 5 = 4 cm.</div></details></li>
+</ol>
+<div class="done-row"><button class="done-btn" type="button" aria-pressed="false">Mark section complete</button><span>Got all 5 right?</span></div>
+</div>
+</section>
+<section class="unit" id="special" data-title="Rectangle, rhombus and square">
+<h2><span class="num">02</span>Rectangle, rhombus and square</h2>
+
+<ul>
+  <li><strong>Rectangle:</strong> a parallelogram in which one angle is a right angle. Then every angle is 90°.</li>
+  <li><strong>Rhombus:</strong> a parallelogram with all four sides equal.</li>
+  <li><strong>Square:</strong> a rectangle with all sides equal. It is both a rectangle and a rhombus.</li>
+</ul>
+<div class="tablewrap"><table>
+<thead><tr><th>Diagonals</th><th>Parallelogram</th><th>Rectangle</th><th>Rhombus</th><th>Square</th></tr></thead>
+<tbody>
+<tr><td>bisect each other</td><td>Yes</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
+<tr><td>are equal</td><td>Not always</td><td>Yes</td><td>Not always</td><td>Yes</td></tr>
+<tr><td>are perpendicular</td><td>Not always</td><td>Not always</td><td>Yes</td><td>Yes</td></tr>
+</tbody></table></div>
+<p>Each row also works backwards ("and vice-versa"): a parallelogram with equal diagonals is a rectangle; a parallelogram with perpendicular diagonals is a rhombus; with both, it is a square.</p>
+<h3>Results from the chapter's examples and exercises</h3>
+<ul>
+  <li>The diagonals of a rhombus are perpendicular. (△AOD ≅ △COD by SSS, so ∠AOD = ∠COD = 90°.)</li>
+  <li>If a diagonal of a parallelogram bisects one of its angles, the parallelogram is a rhombus. In a rhombus each diagonal bisects the angles at its ends.</li>
+  <li>The bisectors of the angles of a parallelogram form a rectangle.</li>
+  <li>When a transversal cuts two parallel lines, the bisectors of the interior angles form a rectangle.</li>
+  <li>In a trapezium ABCD with AB ∥ CD and AD = BC: ∠A = ∠B, ∠C = ∠D, and the diagonals are equal.</li>
+</ul>
+<div class="example"><strong>Worked example.</strong> The diagonals of a rhombus are 16 cm and 12 cm. They bisect each other at right angles, so each side is the hypotenuse of a right triangle with legs 8 cm and 6 cm: side = 10 cm.</div>
+
+<div class="check">
+<h3>Quick check</h3>
+<ol>
+<li>The diagonals of a rhombus are 10 cm and 24 cm. Find its side.
+<details><summary>Show answer</summary><div class="ans">√(5<sup>2</sup> + 12<sup>2</sup>) = 13 cm.</div></details></li>
+<li>The diagonals of a rectangle ABCD meet at O and ∠AOB = 50°. Find ∠OAB and ∠OAD.
+<details><summary>Show answer</summary><div class="ans">OA = OB, so ∠OAB = (180° – 50°) ÷ 2 = 65°. ∠OAD = 90° – 65° = 25°.</div></details></li>
+<li>A parallelogram has equal diagonals. What is it?
+<details><summary>Show answer</summary><div class="ans">A rectangle.</div></details></li>
+<li>True or false: (i) every square is a rhombus, (ii) every rectangle is a square, (iii) the diagonals of a rectangle are perpendicular.
+<details><summary>Show answer</summary><div class="ans">(i) True. (ii) False. (iii) False in general; true only when the rectangle is a square.</div></details></li>
+<li><span class="star">★</span> ABCD is a rhombus with ∠A = 60° and side 8 cm. Find the diagonal BD.
+<details><summary>Show answer</summary><div class="ans">AB = AD and ∠A = 60°, so △ABD is equilateral and BD = 8 cm.</div></details></li>
+</ol>
+<div class="done-row"><button class="done-btn" type="button" aria-pressed="false">Mark section complete</button><span>Got all 5 right?</span></div>
+</div>
+</section>
+<section class="unit" id="midpoint" data-title="The Mid-point Theorem">
+<h2><span class="num">03</span>The Mid-point Theorem</h2>
+
+<figure>
+<svg viewBox="0 0 460 220" role="img" aria-label="Triangle ABC with E and F the mid-points of AB and AC. EF is parallel to BC and half its length.">
+<polygon points="210,30 70,190 390,190" fill="none" class="stroke" stroke-width="2"/>
+<line x1="140" y1="110" x2="300" y2="110" class="acc" stroke-width="2.5"/>
+<text x="204" y="22">A</text><text x="52" y="204">B</text><text x="394" y="204">C</text><text x="120" y="108">E</text><text x="308" y="108">F</text>
+<text x="196" y="102">EF = ½ BC</text>
+</svg>
+<figcaption>E and F are the mid-points of AB and AC.</figcaption>
+</figure>
+<div class="formula">Theorem 8.8: EF ∥ BC and EF = ½ BC<small>the line segment joining the mid-points of two sides of a triangle is parallel to the third side and half of it</small></div>
+<div class="formula">Theorem 8.9 (converse): a line through the mid-point of one side, parallel to another side, bisects the third side</div>
+<p><strong>Proof idea for 8.8:</strong> draw CD ∥ BA to meet EF produced at D. Then △AEF ≅ △CDF (ASA), so EF = DF and DC = AE = BE. BCDE has BE equal and parallel to DC, so it is a parallelogram. Hence EF ∥ BC and EF = ½ ED = ½ BC.</p>
+<h3>Results that follow</h3>
+<ul>
+  <li><strong>Four congruent triangles:</strong> joining the mid-points D, E, F of the sides of △ABC divides it into four congruent triangles. The perimeter of △DEF is half the perimeter of △ABC.</li>
+  <li><strong>Mid-points of any quadrilateral:</strong> joining them in order always gives a parallelogram. Its sides are parallel to the diagonals and half as long.</li>
+  <li>Mid-points of a <strong>rectangle</strong> give a <strong>rhombus</strong> (equal diagonals). Mid-points of a <strong>rhombus</strong> give a <strong>rectangle</strong> (perpendicular diagonals).</li>
+  <li><strong>Equal intercepts:</strong> if three parallel lines cut equal intercepts on one transversal, they cut equal intercepts on any other transversal.</li>
+  <li><strong>Right triangle:</strong> the mid-point of the hypotenuse is equidistant from all three vertices. If the triangle is right-angled at C and M is the mid-point of AB, then CM = MA = ½ AB.</li>
+  <li>In a parallelogram ABCD with E, F the mid-points of AB and CD, the segments AF and EC <strong>trisect</strong> the diagonal BD.</li>
+</ul>
+
+<div class="check">
+<h3>Quick check</h3>
+<ol>
+<li>In △ABC, D and E are the mid-points of AB and AC, and BC = 14 cm. Find DE.
+<details><summary>Show answer</summary><div class="ans">DE = 7 cm, and DE ∥ BC.</div></details></li>
+<li>The sides of a triangle are 7 cm, 9 cm and 12 cm. Find the perimeter of the triangle formed by joining the mid-points of its sides.
+<details><summary>Show answer</summary><div class="ans">½ × 28 = 14 cm.</div></details></li>
+<li>A right triangle has legs 5 cm and 12 cm. Find the distance from the mid-point of the hypotenuse to the right-angle vertex.
+<details><summary>Show answer</summary><div class="ans">Hypotenuse = 13 cm, so the distance is 6.5 cm.</div></details></li>
+<li>A rectangle is 6 cm by 8 cm. What figure is formed by joining the mid-points of its sides, and what is its perimeter?
+<details><summary>Show answer</summary><div class="ans">A rhombus. Each side is half a diagonal: ½ × 10 = 5 cm. Perimeter = 20 cm.</div></details></li>
+<li><span class="star">★</span> ABCD is a trapezium with AB ∥ DC, AB = 10 cm and DC = 6 cm. E and F are the mid-points of AD and BC. Find EF.
+<details><summary>Show answer</summary><div class="ans">Let EF meet the diagonal BD at G. In △DAB, EG = ½ AB = 5 cm. In △BCD, GF = ½ DC = 3 cm. So EF = 8 cm.</div></details></li>
+<li><span class="star">★</span> In △ABC, D is the mid-point of BC and E is the mid-point of AD. BE produced meets AC at F. Show that AF = ⅓ AC.
+<details><summary>Show answer</summary><div class="ans">Draw DG ∥ BF, meeting AC at G. In △ADG, E is the mid-point of AD and EF ∥ DG, so AF = FG. In △CBF, D is the mid-point of BC and DG ∥ BF, so FG = GC. Hence AF = FG = GC = ⅓ AC.</div></details></li>
+</ol>
+<div class="done-row"><button class="done-btn" type="button" aria-pressed="false">Mark section complete</button><span>Got all 6 right?</span></div>
+</div>
+</section>
+<section class="unit" id="proofs" data-title="How to prove what a quadrilateral is">
+<h2><span class="num">04</span>How to prove what a quadrilateral is</h2>
+
+<div class="tablewrap"><table>
+<thead><tr><th>To prove it is a ...</th><th>Show any one of these</th></tr></thead>
+<tbody>
+<tr><td>Parallelogram</td><td>Both pairs of opposite sides are parallel; or both pairs of opposite sides are equal; or both pairs of opposite angles are equal; or the diagonals bisect each other; or one pair of opposite sides is equal and parallel</td></tr>
+<tr><td>Rectangle</td><td>A parallelogram with one right angle; or a parallelogram with equal diagonals</td></tr>
+<tr><td>Rhombus</td><td>A parallelogram with two adjacent sides equal; or with perpendicular diagonals; or in which a diagonal bisects a vertex angle</td></tr>
+<tr><td>Square</td><td>A rectangle with two adjacent sides equal; or a rhombus with one right angle</td></tr>
+</tbody></table></div>
+<h3>Tools used again and again</h3>
+<ul>
+  <li><strong>Parallel sides give equal alternate angles</strong> and supplementary co-interior angles.</li>
+  <li><strong>Congruent triangles</strong> (SSS, SAS, ASA, AAS, RHS), followed by CPCT for the equal parts.</li>
+  <li><strong>A diagonal</strong> is the usual construction: it splits the figure into two triangles to compare.</li>
+  <li><strong>Mid-points</strong> suggest the Mid-point Theorem or its converse. Join a diagonal to create the triangles.</li>
+  <li>Write the reason beside every step. In CBSE marking, reasons carry marks.</li>
+</ul>
+<div class="example"><strong>Worked example.</strong> The diagonal AC of a parallelogram ABCD bisects ∠A. Show that ABCD is a rhombus.<br>
+∠DAC = ∠BAC (given). ∠DAC = ∠BCA (alternate angles, AD ∥ BC). So ∠BAC = ∠BCA, which gives AB = BC (sides opposite equal angles). A parallelogram with two adjacent sides equal is a rhombus.</div>
+
+<div class="check">
+<h3>Quick check</h3>
+<ol>
+<li>The diagonals of a quadrilateral bisect each other at right angles. What is it?
+<details><summary>Show answer</summary><div class="ans">A rhombus (a parallelogram with perpendicular diagonals).</div></details></li>
+<li>Why is 'one pair of opposite sides parallel and the other pair equal' not enough to prove a parallelogram?
+<details><summary>Show answer</summary><div class="ans">A trapezium with equal non-parallel sides (AB ∥ CD, AD = BC) satisfies this but is not a parallelogram.</div></details></li>
+<li>All four angles of a quadrilateral are equal. Prove it is a rectangle.
+<details><summary>Show answer</summary><div class="ans">Each angle is 360° ÷ 4 = 90°. Opposite angles are equal, so it is a parallelogram (Theorem 8.5), and it has a right angle.</div></details></li>
+<li><span class="star">★</span> The diagonals of a parallelogram ABCD meet at O. A line through O meets AB at P and CD at Q. Show that OP = OQ.
+<details><summary>Show answer</summary><div class="ans">In △AOP and △COQ: ∠OAP = ∠OCQ (alternate angles), OA = OC, ∠AOP = ∠COQ (vertically opposite). So the triangles are congruent (ASA) and OP = OQ.</div></details></li>
+</ol>
+<div class="done-row"><button class="done-btn" type="button" aria-pressed="false">Mark section complete</button><span>Got all 4 right?</span></div>
+</div>
+</section>
+<section class="unit" id="traps" data-title="Common mistakes">
+<h2><span class="num">✓</span>Common mistakes to avoid</h2>
+<ul class="traps">
+  <li><strong>'Bisect each other' is not 'equal'.</strong> The diagonals of every parallelogram bisect each other, but they are equal only in a rectangle (or square).</li>
+  <li><strong>Diagonals bisect the vertex angles only in a rhombus or square</strong>, not in a general parallelogram or rectangle.</li>
+  <li><strong>Adjacent angles add to 180°; opposite angles are equal.</strong> Do not mix these up.</li>
+  <li><strong>Naming order matters.</strong> In quadrilateral ABCD the sides are AB, BC, CD, DA and the diagonals are AC and BD.</li>
+  <li><strong>Mid-point Theorem needs mid-points of two sides.</strong> The segment is half of the <em>third</em> side, the one it does not touch.</li>
+  <li><strong>Use the converse correctly:</strong> a line through one mid-point <em>parallel</em> to a side bisects the other side. You must know it is parallel first.</li>
+  <li><strong>Mid-points of a rectangle give a rhombus, and of a rhombus give a rectangle.</strong> Students often swap these.</li>
+  <li><strong>In a rhombus, use half-diagonals</strong> with Pythagoras to find the side: side<sup>2</sup> = (d<sub>1</sub>/2)<sup>2</sup> + (d<sub>2</sub>/2)<sup>2</sup>.</li>
+  <li><strong>Give a reason for every step</strong> of a proof: 'alternate angles', 'CPCT', 'Theorem 8.8', and so on.</li>
+</ul>
+</section>
+</main>
+</div>
+<script>
+(function () {
+  var KEY = "quad-notes-done";
+  var sections = Array.prototype.slice.call(document.querySelectorAll("section.unit[data-title]")).filter(function (s) { return s.querySelector(".done-btn"); });
+  var toc = document.getElementById("toc");
+  var done = {};
+  try { done = JSON.parse(localStorage.getItem(KEY) || "{}") || {}; } catch (e) { done = {}; }
+  var links = {};
+  document.querySelectorAll("section.unit[data-title]").forEach(function (s, i) {
+    var li = document.createElement("li");
+    var a = document.createElement("a");
+    a.href = "#" + s.id;
+    var t = document.createElement("span"); t.className = "tick"; t.setAttribute("aria-hidden", "true");
+    var label = document.createElement("span"); label.textContent = s.getAttribute("data-title");
+    a.appendChild(t); a.appendChild(label);
+    li.appendChild(a); toc.appendChild(li);
+    links[s.id] = t;
+  });
+  function save() { try { localStorage.setItem(KEY, JSON.stringify(done)); } catch (e) {} }
+  function render() {
+    var n = 0;
+    sections.forEach(function (s) {
+      var on = !!done[s.id];
+      if (on) n++;
+      s.classList.toggle("done", on);
+      var b = s.querySelector(".done-btn");
+      b.setAttribute("aria-pressed", on ? "true" : "false");
+      b.textContent = on ? "Section complete ✓ (click to undo)" : "Mark section complete";
+      if (links[s.id]) links[s.id].textContent = on ? "✓" : "";
+    });
+    document.getElementById("bar").style.width = (n / sections.length * 100) + "%";
+    document.getElementById("count").textContent = n + " of " + sections.length + " sections complete";
+  }
+  sections.forEach(function (s, i) {
+    s.querySelector(".done-btn").addEventListener("click", function () {
+      done[s.id] = !done[s.id];
+      save(); render();
+      if (done[s.id] && sections[i + 1]) {
+        sections[i + 1].scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+      }
+    });
+  });
+  render();
+})();
+</script>
+</body>
+</html>
